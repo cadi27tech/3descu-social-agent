@@ -1,0 +1,23 @@
+{
+  "name": "3descu-social-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-hosted €0/mo social autopilot for 3Descu",
+  "scripts": {
+    "run": "tsx src/main.ts",
+    "run:dry": "DRY_RUN=1 tsx src/main.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.0",
+    "googleapis": "^144.0.0",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/node-telegram-bot-api": "^0.64.7",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
