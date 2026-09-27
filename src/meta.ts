@@ -58,13 +58,15 @@ async function graph<T>(
   }
 }
 
-/** Page access token for the Page the system user is assigned to. */
-export async function getPageToken(pageId: string, systemUserToken: string): Promise<string> {
-  const r = await graph<{ access_token?: string }>('GET', `${GRAPH}/${pageId}`, systemUserToken, {
+/**
+ * Page access token for the Page. The secret may hold a system-user token (exchanged here) or a
+ * never-expiring Page token from /me/accounts (used as is); a wrong token still fails on the first publish.
+ */
+export async function getPageToken(pageId: string, token: string): Promise<string> {
+  const r = await graph<{ access_token?: string }>('GET', `${GRAPH}/${pageId}`, token, {
     fields: 'access_token',
-  }, { safe: true });
-  if (!r.access_token) throw new Error('No Page access token: is the Page assigned to the system user?');
-  return r.access_token;
+  }, { safe: true }).catch(() => ({} as { access_token?: string }));
+  return r.access_token ?? token;
 }
 
 export async function igUsername(igUserId: string, token: string): Promise<string> {
