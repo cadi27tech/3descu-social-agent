@@ -1,0 +1,5 @@
+# Captions contain LF inside quoted CSV fields; any line-ending conversion changes caption text.
+data/*.csv -text
+data/*.json text eol=lf
+*.jpg binary
+*.mp4 binary

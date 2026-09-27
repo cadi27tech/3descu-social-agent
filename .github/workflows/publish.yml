@@ -1,0 +1,64 @@
+name: Publish social calendar
+
+# Every 15 min, offset from :00 to dodge the top-of-hour Actions queue. Calendar slots sit
+# on :00 and :30 (08:30, 12:30, 09:30, 11:30), so hourly would post half-hour slots 35+ min
+# late. Minutes are free on a public repo; a run with nothing due takes about 15 s.
+on:
+  schedule:
+    - cron: '5,20,35,50 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (log what is due, post nothing)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: social-publisher
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      # Code + data only: media/ is served from the repo by URL, never needed on the runner.
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            src
+            data
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Publish due posts
+        id: publish
+        continue-on-error: true
+        env:
+          META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+          META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
+          META_SYSTEM_USER_TOKEN: ${{ secrets.META_SYSTEM_USER_TOKEN }}
+          MEDIA_BASE_URL: ${{ vars.MEDIA_BASE_URL }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+        run: node src/main.ts
+
+      # Runs even after a failed post, so every success is recorded and never re-posted.
+      - name: Commit publish state
+        run: |
+          git add data/published.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(state): record published posts'
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
+
+      - name: Fail the run if a post failed or was missed
+        if: steps.publish.outcome == 'failure'
+        run: exit 1
