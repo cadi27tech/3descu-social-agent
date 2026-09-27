@@ -6,14 +6,14 @@ Publishes the pre-written Q4 2026 social calendar to the **3Descu Facebook Page*
 
 | Piece | Where |
 |---|---|
-| Calendar source (Metricool 94-column CSV, 161 rows) | [data/calendar-q4-2026.csv](data/calendar-q4-2026.csv) |
-| Normalised schedule (157 entries, drafts dropped) | [data/schedule.json](data/schedule.json), built by [scripts/build-schedule.ts](scripts/build-schedule.ts) |
+| Calendar source (Metricool 94-column CSV, 167 rows) | [data/calendar-q4-2026.csv](data/calendar-q4-2026.csv) |
+| Normalised schedule (163 entries, drafts dropped) | [data/schedule.json](data/schedule.json), built by [scripts/build-schedule.ts](scripts/build-schedule.ts) |
 | Publish state (what is already posted) | [data/published.json](data/published.json), committed back by the workflow |
 | Media (72 files, 44 MB: 67 JPG + 5 MP4) | [media/](media/), served at `https://raw.githubusercontent.com/cadi27tech/3descu-social-agent/main/media/<path>` |
 | Publisher | [src/main.ts](src/main.ts), [src/core.ts](src/core.ts), [src/meta.ts](src/meta.ts) |
 | Cron | [.github/workflows/publish.yml](.github/workflows/publish.yml), every 15 min at :05/:20/:35/:50 |
 
-- **Automated channels:** `facebook` (image, multi-photo, Reel), `instagram` (image, carousel, Reel), `story` (Instagram Story, image or video). 98 posts, 1 Oct to 29 Dec 2026.
+- **Automated channels:** `facebook` (image, multi-photo, Reel), `instagram` (image, carousel, Reel), `story` (Instagram Story, image or video). 104 posts, 1 Oct to 29 Dec 2026.
 - **Manual channels:** `linkedin`, `youtube`, `gbp` stay in the schedule with `"mode": "manual"`. They are scheduled natively elsewhere; this bot never touches them.
 - **Times:** the calendar is in Europe/Berlin wall-clock time; `publish_at` is UTC and already accounts for the 25 Oct 2026 DST switch.
 - **Due rule:** an entry is posted on the first run after `publish_at`. If it is more than 6 hours overdue it is recorded as `missed` and never posted late (so switching the bot on mid-quarter does not dump a backlog).
