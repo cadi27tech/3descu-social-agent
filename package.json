@@ -1,23 +1,28 @@
 {
   "name": "3descu-social-agent",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Self-hosted €0/mo social autopilot for 3Descu",
-  "scripts": {
-    "run": "tsx src/main.ts",
-    "run:dry": "DRY_RUN=1 tsx src/main.ts",
-    "typecheck": "tsc --noEmit"
+  "description": "Free publisher for the pre-written 3Descu social calendar (Facebook Page + Instagram Business via the Meta Graph API)",
+  "engines": {
+    "node": ">=22.18"
   },
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.32.0",
-    "googleapis": "^144.0.0",
-    "node-telegram-bot-api": "^0.66.0"
+  "scripts": {
+    "publish:due": "node src/main.ts",
+    "publish:dry": "node src/main.ts --dry-run",
+    "build:schedule": "node scripts/build-schedule.ts",
+    "build:media": "node scripts/build-schedule.ts --copy-media",
+    "test": "node --test test/check.test.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "check": "npm run typecheck && npm run lint && npm test"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^22.0.0",
-    "@types/node-telegram-bot-api": "^0.64.7",
-    "tsx": "^4.19.0",
-    "typescript": "^5.6.0"
+    "csv-parse": "^7.0.3",
+    "eslint": "^10.11.0",
+    "typescript": "^5.6.0",
+    "typescript-eslint": "^8.70.1"
   }
 }

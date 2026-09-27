@@ -1,153 +1,105 @@
-# 3Descu social autopilot
+# 3Descu calendar publisher
 
-Self-hosted €0/mo social publishing agent. Every Monday 09:00, GitHub Actions
-runs a pipeline that:
+Publishes the pre-written Q4 2026 social calendar to the **3Descu Facebook Page** and **Instagram Business** account. No content is generated: every caption, image and video comes from the calendar exactly as written. Cost: EUR 0 (GitHub Actions on a public repo, Meta Graph API, media served from this repo).
 
-1. Searches recent 3D-print / AM news via **Tavily** (free tier).
-2. Writes one platform-native caption for each of **Facebook, Instagram, LinkedIn, YouTube** via **Claude Haiku 4.5**.
-3. Generates one square image via **Cloudflare Workers AI Flux Schnell** (free tier).
-4. Uploads image to the existing **Supabase** public bucket for hosting.
-5. Sends a preview to your **Telegram** for APPROVE/SKIP (first two weeks).
-6. Publishes to **Meta Graph API** (FB + IG), **LinkedIn UGC API** (personal profile), **YouTube Data API v3** — all free.
+## How it works
 
-Expected monthly cost at 3 posts/week: **~€0.02/mo** (Claude Haiku only; everything else is free tier).
+| Piece | Where |
+|---|---|
+| Calendar source (Metricool 94-column CSV, 161 rows) | [data/calendar-q4-2026.csv](data/calendar-q4-2026.csv) |
+| Normalised schedule (157 entries, drafts dropped) | [data/schedule.json](data/schedule.json), built by [scripts/build-schedule.ts](scripts/build-schedule.ts) |
+| Publish state (what is already posted) | [data/published.json](data/published.json), committed back by the workflow |
+| Media (72 files, 44 MB: 67 JPG + 5 MP4) | [media/](media/), served at `https://raw.githubusercontent.com/cadi27tech/3descu-social-agent/main/media/<path>` |
+| Publisher | [src/main.ts](src/main.ts), [src/core.ts](src/core.ts), [src/meta.ts](src/meta.ts) |
+| Cron | [.github/workflows/publish.yml](.github/workflows/publish.yml), every 15 min at :05/:20/:35/:50 |
 
-## Local run
+- **Automated channels:** `facebook` (image, multi-photo, Reel), `instagram` (image, carousel, Reel), `story` (Instagram Story, image or video). 98 posts, 1 Oct to 29 Dec 2026.
+- **Manual channels:** `linkedin`, `youtube`, `gbp` stay in the schedule with `"mode": "manual"`. They are scheduled natively elsewhere; this bot never touches them.
+- **Times:** the calendar is in Europe/Berlin wall-clock time; `publish_at` is UTC and already accounts for the 25 Oct 2026 DST switch.
+- **Due rule:** an entry is posted on the first run after `publish_at`. If it is more than 6 hours overdue it is recorded as `missed` and never posted late (so switching the bot on mid-quarter does not dump a backlog).
+- **Idempotent:** every success is written to `data/published.json` straight away and committed even when another post in the same run failed. A recorded id is never posted again. A failed post is retried on the next runs, at most 3 attempts.
+- **Failure alerts:** a failed or missed post makes the run fail, and GitHub emails the repo owner. No Telegram, no personal data in logs.
+- **Dry run:** if any of the three secrets is missing, or the workflow is started with `dry_run`, it only logs what is due and exits 0. With secrets present, a dry run also checks them read-only (gets the Page token and the Instagram username).
+
+## One-time setup (about 20 min)
+
+Business portfolio: **3Descu BUN**, id `1356982691502838`.
+
+### 1. Meta app (the system user token is issued for an app)
+
+1. Go to developers.facebook.com → **My Apps** → **Create app**.
+2. Use case **Other** → app type **Business** → name `3Descu Calendar Publisher` → Business portfolio **3Descu BUN** → **Create app**.
+3. In the app: **App settings → Basic** → fill **Privacy Policy URL** with the privacy page on www.3descu.com, pick a **Category** → **Save changes**.
+4. Top bar **App Mode** → switch to **Live**. (Posts made by an app in Development mode are visible only to people with a role on the app.)
+
+### 2. System user
+
+1. Open business.facebook.com/latest/settings/?business_id=1356982691502838 → **Users → System users** → **Add**.
+2. Name `calendar-publisher`, role **Admin** → **Create system user**.
+3. With it selected → **Assign assets**:
+   - **Pages** → tick **3Descu** → toggle **Full control (Everything)** → **Assign**.
+   - **Instagram accounts** → tick the 3Descu account → **Full control** → **Assign**.
+   - **Apps** → tick **3Descu Calendar Publisher** → **Full control (Manage app)** → **Assign**.
+
+### 3. Token
+
+1. Same system user → **Generate token** → app **3Descu Calendar Publisher**.
+2. **Token expiration: Never**.
+3. Tick exactly: `pages_manage_posts`, `pages_read_engagement`, `instagram_basic`, `instagram_content_publish`, `business_management`, plus `pages_show_list` (read-only; lets the bot swap the system user token for the Page token).
+4. **Generate token** → copy it now (it is shown once).
+
+### 4. IDs
+
+- **Page ID:** Business settings → **Accounts → Pages** → 3Descu → the numeric ID under the name.
+- **Instagram user ID:** replace the two placeholders and run:
 
 ```bash
-npm install
-cp .env.example .env   # fill in secrets from the walkthrough below
-npm run run:dry        # generates captions + placeholder image, prints, no publish
-npm run run            # for real (respects APPROVAL_LOOP)
+curl -s -H "Authorization: Bearer PASTE_TOKEN" "https://graph.facebook.com/v24.0/PASTE_PAGE_ID?fields=instagram_business_account"
 ```
 
-## OAuth walkthrough — one-time setup (est. 90 min)
+The `instagram_business_account.id` value (starts with `1784`) is the Instagram user ID.
 
-Do these in this order. Each block ends with the exact env var to paste into GitHub Actions secrets.
+### 5. GitHub secrets
 
-### 1. Tavily (research) — 2 min
+github.com/cadi27tech/3descu-social-agent → **Settings → Secrets and variables → Actions → New repository secret**, three times:
 
-- Sign up at https://tavily.com (free: 1000 queries/mo — we use ~24/mo).
-- Dashboard → API Keys → copy `tvly-...`.
-- **Secret:** `TAVILY_API_KEY`.
+| Secret | Value |
+|---|---|
+| `META_PAGE_ID` | Page ID from step 4 |
+| `META_IG_USER_ID` | Instagram user ID from step 4 |
+| `META_SYSTEM_USER_TOKEN` | token from step 3 |
 
-### 2. Anthropic API (captions) — 2 min
+Then **Actions → Publish social calendar → Run workflow → tick dry_run → Run**. The log must end with `Credentials OK`. The first real post is Thu 1 Oct 2026 12:00 Berlin; secrets must be in place before 18:00 Berlin that day or that post is recorded as missed.
 
-- Get a key at https://console.anthropic.com.
-- **Secret:** `ANTHROPIC_API_KEY`.
+## Media hosting
 
-### 3. Cloudflare Workers AI (image gen) — 3 min
+The repo is public, so media is committed under `media/` and Meta fetches it from `raw.githubusercontent.com`. Images are served as `image/jpeg`. Videos are served as `application/octet-stream`; Meta reads the file itself, but if the first Reel fails with a media format or fetch error, switch the host without touching code:
 
-- Sign up at https://cloudflare.com (free).
-- Dashboard → **Workers & Pages → Workers AI**.
-- Copy your **Account ID** (right sidebar of any Workers page).
-- **My Profile → API Tokens → Create Token → "Workers AI"** template → create → copy.
-- **Secrets:** `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`.
+1. **Settings → Pages** → Source **Deploy from a branch** → `main` / `(root)` → **Save**.
+2. **Settings → Secrets and variables → Actions → Variables → New repository variable** `MEDIA_BASE_URL` = `https://cadi27tech.github.io/3descu-social-agent/media`.
 
-### 4. Supabase bucket for image hosting — 2 min
+GitHub Pages serves `video/mp4`. Every URL is checked with a HEAD request before posting, so a broken link fails loudly instead of posting without media.
 
-- In your existing 3descu Supabase project: **Storage → New bucket → `social-posts` → make PUBLIC**.
-- Copy the project URL and **service_role** key from Project Settings → API.
-- **Secrets:** `SUPABASE_URL`, `SUPABASE_SERVICE_KEY`.
+## Changing the calendar
 
-### 5. Meta Business (Facebook Page + Instagram Business) — 25 min
+1. Copy the new `09-social-calendar-q4-2026.csv` over [data/calendar-q4-2026.csv](data/calendar-q4-2026.csv).
+2. `npm run build:media` (rebuilds the schedule and copies any new media from `marketing/strategy-2026-10/social-gfx` and `A:/Adi/3Descu/Social Upload 2026Q4/video`).
+3. `npm run check` (typecheck, lint, tests). Commit and merge.
 
-- Go to https://business.facebook.com → make sure your `3Descu` Facebook Page is under the Business account, and IG Business is linked to it (Meta Business Suite → Settings → Accounts → Instagram accounts).
-- Go to **https://developers.facebook.com** → create an app → type "Business".
-- Add product **Facebook Login for Business** and **Instagram** and **Marketing API**.
-- Meta Business Settings → **Users → System Users → Add → System user name `autopilot`**, role Admin.
-- Assign your `3Descu` FB Page to that system user (Assets → Pages → assign → full control).
-- **Generate token** for the system user with these permissions:
-  - `pages_show_list`
-  - `pages_manage_posts`
-  - `pages_read_engagement`
-  - `instagram_basic`
-  - `instagram_content_publish`
-  - `business_management`
-- Choose **NEVER expires** (system-user tokens don't rotate).
-- Get IDs:
-  - FB Page ID: your Page → About → scroll to bottom
-  - IG Business Account ID: run `curl "https://graph.facebook.com/v20.0/{PAGE_ID}?fields=instagram_business_account&access_token={TOKEN}"`
-- **Secrets:** `META_PAGE_ACCESS_TOKEN`, `META_FB_PAGE_ID`, `META_IG_BUSINESS_ACCOUNT_ID`.
+Captions are copied byte for byte; the tests fail if `data/schedule.json` does not match the CSV.
 
-### 6. LinkedIn personal profile — 15 min (no approval needed)
+## Local commands
 
-- Go to https://developer.linkedin.com/ → **Create app** → link it to your `3Descu` Company Page (needed as owner even if we only post to personal).
-- Products → request **Share on LinkedIn** (auto-approved instantly).
-- **Auth tab** → add redirect URI `https://localhost:8080/callback`.
-- Copy Client ID and Secret.
-- Run the OAuth dance manually (once) to get an access token:
-  ```
-  https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=YOUR_CLIENT_ID&redirect_uri=https%3A%2F%2Flocalhost%3A8080%2Fcallback&scope=w_member_social
-  ```
-  Approve → copy `code=...` from URL → exchange:
-  ```
-  curl -X POST https://www.linkedin.com/oauth/v2/accessToken \
-    -d grant_type=authorization_code \
-    -d code=THE_CODE \
-    -d client_id=YOUR_CLIENT_ID \
-    -d client_secret=YOUR_CLIENT_SECRET \
-    -d redirect_uri=https://localhost:8080/callback
-  ```
-- Get your personal URN:
-  ```
-  curl -H "Authorization: Bearer YOUR_TOKEN" https://api.linkedin.com/v2/userinfo
-  ```
-- **Secrets:** `LINKEDIN_ACCESS_TOKEN`, `LINKEDIN_PERSON_URN` (format: `urn:li:person:xxxx`).
-- **Token lifespan:** 60 days. Renew via refresh-token flow (Products → Sign In With LinkedIn using OpenID Connect if you want automatic; MVP is manual re-run every 2 months).
+```bash
+npm ci && npm run check
+```
 
-### 7. LinkedIn Company Page — apply in parallel (2-6 wk wait)
+```bash
+npm run publish:dry
+```
 
-- developer.linkedin.com → your app → Products → request **Community Management API**.
-- LinkedIn will email a form: legal entity, business email, screencast, use case.
-- Once approved for Development Tier: fill `LINKEDIN_ORG_URN` and add a Company post channel to `main.ts`. Do NOT block MVP on this.
-
-### 8. YouTube Data API v3 — 15 min
-
-- Google Cloud Console → new project `3descu-social`.
-- APIs & Services → Library → enable **YouTube Data API v3**.
-- Credentials → Create Credentials → **OAuth client ID** (Web app) → redirect URI `https://localhost:8080/callback`.
-- Copy Client ID + Secret.
-- Run the OAuth dance:
-  ```
-  https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_ID&redirect_uri=https%3A%2F%2Flocalhost%3A8080%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube&access_type=offline&prompt=consent
-  ```
-  Approve with the Google account that owns the 3Descu YouTube channel → grab `code=` from URL → exchange:
-  ```
-  curl -X POST https://oauth2.googleapis.com/token \
-    -d grant_type=authorization_code \
-    -d code=THE_CODE \
-    -d client_id=YOUR_ID \
-    -d client_secret=YOUR_SECRET \
-    -d redirect_uri=https://localhost:8080/callback
-  ```
-- Save the `refresh_token` (permanent).
-- **Secrets:** `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET`, `YOUTUBE_REFRESH_TOKEN`, `YOUTUBE_CHANNEL_ID` (from your channel URL).
-- **Note:** YouTube Community posts API is gated to channels with 500+ subs. Until then, `publishYouTube()` logs and skips; the pipeline still publishes to FB/IG/LI.
-
-### 9. Telegram approval bot — 5 min
-
-- Telegram → search **@BotFather** → `/newbot` → follow prompts → copy the token.
-- Message your new bot once (anything).
-- Get your chat ID: visit `https://api.telegram.org/bot{TOKEN}/getUpdates` → find `"chat":{"id":123456...}`.
-- **Secrets:** `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
-
-### 10. GitHub Actions secrets — 10 min
-
-- github.com/cadi27tech/3descu-social-agent → Settings → Secrets and variables → Actions.
-- Paste every secret from steps 1-9 above.
-- Add **Variables** (not secrets): `APPROVAL_LOOP=1` (flip to `0` after 2 weeks of proven quality).
-
-Test it: **Actions tab → Weekly social autopilot → Run workflow → dry_run = true** → check the logs.
-
-## Skipped (add later)
-
-- **TikTok** — Content Posting API requires app approval (2-4 wk); channel dropped from ICP for now anyway.
-- **Twitter/X, Threads, Reddit, Pinterest** — wrong audience for B2B industrial.
-- **Per-channel image crops** — Flux gives 1024x1024, all platforms auto-crop. Add Sharp resizes only if a channel visibly starves.
-- **Post history / dashboard** — GH Actions log is enough for MVP. Add Postiz self-hosted if a dashboard becomes actually useful.
+Node 22.18+ runs the TypeScript directly (type stripping); no build step.
 
 ## Kill switch
 
-- Disable the workflow: github.com/cadi27tech/3descu-social-agent/actions → weekly-cron → ⋯ → Disable workflow.
-- Or set variable `APPROVAL_LOOP=1` and stop replying to Telegram — every post times out to SKIP after 15 min.
+**Actions → Publish social calendar → ⋯ → Disable workflow.** To skip a single post, add its id to `data/published.json` with `"status": "missed"`.
