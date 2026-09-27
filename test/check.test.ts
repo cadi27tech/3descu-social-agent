@@ -16,12 +16,12 @@ import {
 const rows = parse(readFileSync('data/calendar-q4-2026.csv'), { columns: true, bom: true }) as Record<string, string>[];
 const committed = JSON.parse(readFileSync('data/schedule.json', 'utf8')) as Entry[];
 
-test('calendar parse: 161 rows in, drafts excluded, committed schedule is current', () => {
-  assert.equal(rows.length, 161);
+test('calendar parse: 167 rows in, drafts excluded, committed schedule is current', () => {
+  assert.equal(rows.length, 167);
   const drafts = rows.filter((r) => r.Draft === 'TRUE').length;
   assert.equal(drafts, 4);
   const built = buildSchedule(rows);
-  assert.equal(built.length, 161 - drafts);
+  assert.equal(built.length, 167 - drafts);
   assert.ok(built.every((e) => e.draft === false));
   assert.deepEqual(committed, built, 'data/schedule.json is stale or hand-edited: run npm run build:schedule');
   assert.equal(new Set(committed.map((e) => e.id)).size, committed.length, 'ids unique');
