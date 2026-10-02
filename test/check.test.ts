@@ -142,3 +142,17 @@ test('idempotency: a second run publishes nothing, failures retry up to the cap'
   const reloaded = JSON.parse(JSON.stringify(state)) as State;
   assert.deepEqual(selectDue([a, b], reloaded, now).due, []);
 });
+
+// Adrian 2026-10-02: the 50/50 split (orders over €500) is bank transfer only; card and PayPal are paid in full upfront.
+// Every sentence that offers the split must name the bank transfer in the same sentence (captions and alt text).
+const SPLIT = /50\s*\/\s*50|half to start|Hälfte zum Start|moitié au (démarrage|lancement)|helft bij de start/i;
+const BANK = /bank transfer|Überweisung|virement|overboeking/i;
+const bareSplit = (s: string) => s.split(/(?<=[.!?]["”»]?)\s+|\n/).filter((x) => SPLIT.test(x) && !BANK.test(x));
+
+test('50/50 is only ever offered by bank transfer', () => {
+  assert.equal(bareSplit('Orders over €500 can be paid 50/50.').length, 1, 'guard catches the bare split');
+  assert.equal(bareSplit('Pay 50/50. Bank transfer only.').length, 1, 'guard needs the same sentence');
+  assert.equal(bareSplit('Card with the heading "Pay 50/50." and the line "Pay by bank transfer."').length, 1, 'quoted heading');
+  assert.equal(bareSplit('Orders over €500 paid by bank transfer can be split 50/50: half to start, half before shipping.').length, 0);
+  for (const e of committed) for (const t of [e.caption, ...e.alt]) assert.deepEqual(bareSplit(t), [], e.id);
+});
