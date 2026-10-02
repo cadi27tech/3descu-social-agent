@@ -2762,5 +2762,165 @@
       "Dark 3Descu brand card with the heading \"Accept, then we print.\" and the line \"No account. Nothing is charged before you accept the offer. A person replies the same business day.\""
     ],
     "draft": false
+  },
+  {
+    "id": "q4w41-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-07T07:00:00.000Z",
+    "local": "2026-10-07 09:00 Europe/Berlin",
+    "caption": "You can now pay a 3Descu invoice by bank transfer or by card.\n\nEvery offer shows the bank transfer price first. It is our headline price and the method we recommend. Next to it you see the standard price, for card through a secure Stripe link or PayPal on request. You choose when you accept the offer, and bank transfer saves you the difference.\n\nEverything is invoiced and paid in €. Same factory, same ISO 9001:2015 certificate, same reprint-or-refund term in writing.\n\nHow both prices work: https://www.3descu.com/post/pay-by-card-or-bank-transfer?utm_source=facebook&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w41-wed-facebook\n\n#3DPrinting #Manufacturing #B2B",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-en-1080x1350.jpg"
+    ],
+    "alt": [
+      "Enclosed 3D printers on a production bench in the 3Descu factory, with the text Pay by bank transfer or card: bank transfer price recommended, standard price for card via Stripe or PayPal on request, every invoice in euro."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w41-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-07T07:00:00.000Z",
+    "local": "2026-10-07 09:00 Europe/Berlin",
+    "caption": "Pay a 3Descu invoice by bank transfer or by card.\n\nBank transfer price: our headline price, recommended.\nStandard price: card via a secure Stripe link, PayPal on request.\nYou choose when you accept the offer.\nEvery invoice in €.\n\nThe full guide for procurement and finance teams is on our blog: Pay by card or bank transfer. Link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing #B2B #MadeInEU",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-en-1080x1350.jpg"
+    ],
+    "alt": [
+      "Enclosed 3D printers on a production bench in the 3Descu factory, with the text Pay by bank transfer or card: bank transfer price recommended, standard price for card via Stripe or PayPal on request, every invoice in euro."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w41-thu-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-08T07:00:00.000Z",
+    "local": "2026-10-08 09:00 Europe/Berlin",
+    "caption": "Bezahlen Sie Ihre 3Descu-Rechnung per Überweisung oder per Karte.\n\nÜberweisungspreis: unser Hauptpreis, empfohlen.\nStandardpreis: Karte per sicherem Stripe-Link, PayPal auf Anfrage.\nSie wählen bei Annahme des Angebots.\nJede Rechnung in €.\n\nDen vollständigen Leitfaden für Einkauf und Buchhaltung finden Sie in unserem Blog. Link in der Bio.\n\n#3DDruck #AdditiveFertigung #Fertigung #B2B #MadeInEU",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-de-1080x1350.jpg"
+    ],
+    "alt": [
+      "Geschlossene 3D-Drucker auf einer Werkbank in der 3Descu Fabrik, mit dem Text Zahlung per Überweisung oder Karte: Überweisungspreis empfohlen, Standardpreis für Karte per Stripe oder PayPal auf Anfrage, jede Rechnung in Euro."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w41-sat-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-10T07:00:00.000Z",
+    "local": "2026-10-10 09:00 Europe/Berlin",
+    "caption": "Ihre 3Descu-Rechnung können Sie jetzt per Überweisung oder per Karte bezahlen.\n\nJedes Angebot zeigt zuerst den Überweisungspreis. Er ist unser Hauptpreis und die Zahlungsart, die wir empfehlen. Daneben steht der Standardpreis, für die Karte über einen sicheren Stripe-Link oder PayPal auf Anfrage. Sie wählen bei Annahme des Angebots, und mit der Überweisung sparen Sie die Differenz.\n\nAlles wird in € berechnet und bezahlt. Dieselbe Fabrik, dasselbe ISO 9001:2015 Zertifikat, Nachdruck oder Erstattung. Schriftlich.\n\nSo funktionieren beide Preise (Artikel auf Englisch): https://www.3descu.com/post/pay-by-card-or-bank-transfer?utm_source=facebook&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w41-sat-facebook\n\n#3DDruck #Fertigung #B2B",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-de-1080x1350.jpg"
+    ],
+    "alt": [
+      "Geschlossene 3D-Drucker auf einer Werkbank in der 3Descu Fabrik, mit dem Text Zahlung per Überweisung oder Karte: Überweisungspreis empfohlen, Standardpreis für Karte per Stripe oder PayPal auf Anfrage, jede Rechnung in Euro."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w41-sun-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-11T07:00:00.000Z",
+    "local": "2026-10-11 09:00 Europe/Berlin",
+    "caption": "Vous pouvez désormais régler une facture 3Descu par virement ou par carte.\n\nChaque offre affiche d'abord le prix virement. C'est notre prix principal et le moyen que nous recommandons. À côté figure le prix standard, pour la carte via un lien Stripe sécurisé ou PayPal sur demande. Vous choisissez en acceptant l'offre, et le virement vous fait économiser la différence.\n\nTout est facturé et réglé en €. La même usine, le même certificat ISO 9001:2015, la même garantie de réimpression ou de remboursement, par écrit.\n\nLes deux prix en détail (article en anglais) : https://www.3descu.com/post/pay-by-card-or-bank-transfer?utm_source=facebook&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w41-sun-facebook\n\n#Impression3D #Fabrication #B2B",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-fr-1080x1350.jpg"
+    ],
+    "alt": [
+      "Imprimantes 3D fermées sur un établi de l'usine 3Descu, avec le texte Payez par virement ou par carte : prix virement recommandé, prix standard pour la carte via Stripe ou PayPal sur demande, toutes les factures en euros."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w41-sun-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-11T07:00:00.000Z",
+    "local": "2026-10-11 09:00 Europe/Berlin",
+    "caption": "Réglez votre facture 3Descu par virement ou par carte.\n\nPrix virement : notre prix affiché, recommandé.\nPrix standard : carte via lien Stripe sécurisé, PayPal sur demande.\nVous choisissez en acceptant l'offre.\nToutes les factures en €.\n\nLe guide complet pour les équipes achats et comptabilité est sur notre blog. Lien dans la bio.\n\n#Impression3D #FabricationAdditive #Fabrication #B2B #MadeInEU",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-fr-1080x1350.jpg"
+    ],
+    "alt": [
+      "Imprimantes 3D fermées sur un établi de l'usine 3Descu, avec le texte Payez par virement ou par carte : prix virement recommandé, prix standard pour la carte via Stripe ou PayPal sur demande, toutes les factures en euros."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w42-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-14T07:00:00.000Z",
+    "local": "2026-10-14 09:00 Europe/Berlin",
+    "caption": "U kunt een 3Descu-factuur nu betalen per overboeking of per kaart.\n\nElke offerte toont eerst de overboekingsprijs. Dat is onze hoofdprijs en de betaalwijze die wij aanbevelen. Daarnaast ziet u de standaardprijs, voor betaling per kaart via een beveiligde Stripe-link of PayPal op aanvraag. U kiest bij het accepteren van de offerte, en met een overboeking bespaart u het verschil.\n\nAlles wordt gefactureerd en betaald in €. Dezelfde fabriek, hetzelfde ISO 9001:2015 certificaat, dezelfde garantie op herdruk of terugbetaling, schriftelijk vastgelegd.\n\nBeide prijzen uitgelegd (artikel in het Engels): https://www.3descu.com/post/pay-by-card-or-bank-transfer?utm_source=facebook&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed-facebook\n\n#3Dprinten #Productie #B2B",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-nl-1080x1350.jpg"
+    ],
+    "alt": [
+      "Gesloten 3D-printers op een werkbank in de 3Descu fabriek, met de tekst Betalen per overboeking of kaart: overboekingsprijs aanbevolen, standaardprijs voor kaart via Stripe of PayPal op aanvraag, elke factuur in euro."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w42-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-14T07:00:00.000Z",
+    "local": "2026-10-14 09:00 Europe/Berlin",
+    "caption": "Betaal uw 3Descu-factuur per overboeking of per kaart.\n\nOverboekingsprijs: onze hoofdprijs, aanbevolen.\nStandaardprijs: kaart via beveiligde Stripe-link, PayPal op aanvraag.\nU kiest bij het accepteren van de offerte.\nElke factuur in €.\n\nDe volledige gids voor inkoop en financiële administratie staat op onze blog. Link in bio.\n\n#3Dprinten #AdditiveManufacturing #Productie #B2B #MadeInEU",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-nl-1080x1350.jpg"
+    ],
+    "alt": [
+      "Gesloten 3D-printers op een werkbank in de 3Descu fabriek, met de tekst Betalen per overboeking of kaart: overboekingsprijs aanbevolen, standaardprijs voor kaart via Stripe of PayPal op aanvraag, elke factuur in euro."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w40-sun-linkedin",
+    "channel": "linkedin",
+    "mode": "manual",
+    "publish_at": "2026-10-04T06:30:00.000Z",
+    "local": "2026-10-04 08:30 Europe/Berlin",
+    "caption": "Every 3Descu order can now be paid by bank transfer or by card.\n\nEach offer shows two prices:\n\n1. The bank transfer price. This is our headline price and the method we recommend.\n2. The standard price, for card through a secure Stripe link, or PayPal on request.\n\nYou choose the method when you accept the offer, and paying by bank transfer saves you the difference. The invoice email lists the bank details first, then a card payment link prefilled with the invoice data. Stripe applies 3D Secure where your card issuer asks for it.\n\nEverything is invoiced and paid in €. EU businesses with a valid VAT number are invoiced under reverse charge. Orders over €500 paid by bank transfer can be split 50/50: half to start production, half before shipping. Card and PayPal are always paid in full upfront.\n\nThe rest stays as it was: a person replies to every quote the same business day, a non-conforming part is reprinted or refunded under Article 5.5 of our contract, and every order runs under our ISO 9001:2015 certificate.\n\nHow both prices and both payment options work, for procurement and finance teams:\nhttps://www.3descu.com/post/pay-by-card-or-bank-transfer?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w40-sun-linkedin\n\n#3DPrinting #Procurement #AdditiveManufacturing #B2B",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-en-1200x627.jpg"
+    ],
+    "alt": [
+      "Rows of enclosed 3D printers in the 3Descu production hall, with the text Pay by bank transfer or card: bank transfer price recommended, standard price for card via Stripe or PayPal on request."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w41-mon-linkedin",
+    "channel": "linkedin",
+    "mode": "manual",
+    "publish_at": "2026-10-05T06:30:00.000Z",
+    "local": "2026-10-05 08:30 Europe/Berlin",
+    "caption": "Jeder 3Descu-Auftrag kann jetzt per Überweisung oder per Karte bezahlt werden.\n\nJedes Angebot zeigt zwei Preise:\n\n1. Den Überweisungspreis. Er ist unser Hauptpreis und die Zahlungsart, die wir empfehlen.\n2. Den Standardpreis, für die Karte über einen sicheren Stripe-Link oder PayPal auf Anfrage.\n\nSie wählen die Zahlungsart bei Annahme des Angebots, und mit der Überweisung sparen Sie die Differenz. Die Rechnungs-E-Mail nennt zuerst die Bankverbindung, danach einen Kartenzahlungslink mit den Rechnungsdaten bereits ausgefüllt. Stripe nutzt 3D Secure, wenn Ihre Bank es verlangt.\n\nAlles wird in € berechnet und bezahlt. Unternehmen in der EU mit gültiger USt-IdNr. erhalten eine Rechnung im Reverse-Charge-Verfahren. Aufträge über 500 € können bei Zahlung per Überweisung 50/50 bezahlt werden: die Hälfte zum Produktionsstart, die Hälfte vor dem Versand. Karte und PayPal werden immer vollständig im Voraus bezahlt.\n\nAlles andere bleibt: Antwort auf jede Anfrage am selben Werktag, Nachdruck oder Erstattung nach Artikel 5.5 unseres Vertrags, schriftlich, und jeder Auftrag läuft unter unserem ISO 9001:2015 Zertifikat.\n\nSo funktionieren beide Preise und beide Zahlungsarten, für Einkauf und Buchhaltung (Artikel auf Englisch):\nhttps://www.3descu.com/post/pay-by-card-or-bank-transfer?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w41-mon-linkedin\n\n#3DDruck #Einkauf #AdditiveFertigung #B2B",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-de-1200x627.jpg"
+    ],
+    "alt": [
+      "Reihen geschlossener 3D-Drucker in der 3Descu Produktionshalle, mit dem Text Zahlung per Überweisung oder Karte: Überweisungspreis empfohlen, Standardpreis für Karte per Stripe oder PayPal auf Anfrage."
+    ],
+    "draft": false
   }
 ]
