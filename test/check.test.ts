@@ -16,12 +16,12 @@ import {
 const rows = parse(readFileSync('data/calendar-q4-2026.csv'), { columns: true, bom: true }) as Record<string, string>[];
 const committed = JSON.parse(readFileSync('data/schedule.json', 'utf8')) as Entry[];
 
-test('calendar parse: 167 rows in, drafts excluded, committed schedule is current', () => {
-  assert.equal(rows.length, 167);
+test('calendar parse: 177 rows in, drafts excluded, committed schedule is current', () => {
+  assert.equal(rows.length, 177);
   const drafts = rows.filter((r) => r.Draft === 'TRUE').length;
   assert.equal(drafts, 4);
   const built = buildSchedule(rows);
-  assert.equal(built.length, 167 - drafts);
+  assert.equal(built.length, 177 - drafts);
   assert.ok(built.every((e) => e.draft === false));
   assert.deepEqual(committed, built, 'data/schedule.json is stale or hand-edited: run npm run build:schedule');
   assert.equal(new Set(committed.map((e) => e.id)).size, committed.length, 'ids unique');
@@ -155,4 +155,19 @@ test('50/50 is only ever offered by bank transfer', () => {
   assert.equal(bareSplit('Card with the heading "Pay 50/50." and the line "Pay by bank transfer."').length, 1, 'quoted heading');
   assert.equal(bareSplit('Orders over €500 paid by bank transfer can be split 50/50: half to start, half before shipping.').length, 0);
   for (const e of committed) for (const t of [e.caption, ...e.alt]) assert.deepEqual(bareSplit(t), [], e.id);
+});
+
+// Card payments launch (2026-10): the bank transfer price is the headline and card is the standard price. Card is never
+// described as costing extra, and no payment post is due on a day that already has a post on the same channel.
+const PAY = committed.filter((e) => e.media.some((m) => m.startsWith('gfx/payments/')));
+const CARD_COST = /\b(fees?|surcharges?)\b|Gebühr|Aufpreis|\bfrais\b|supplément|toeslag|\bkosten\b/i;
+
+test('card payments posts: 10 posts, no card-cost wording, one post per channel per day', () => {
+  assert.equal(PAY.length, 10);
+  assert.deepEqual(PAY.map((e) => e.channel).sort().join(), 'facebook,facebook,facebook,facebook,instagram,instagram,instagram,instagram,linkedin,linkedin');
+  for (const e of PAY) {
+    for (const t of [e.caption, ...e.alt]) assert.ok(!CARD_COST.test(t), `${e.id}: ${t.match(CARD_COST)?.[0]}`);
+    const sameDay = committed.filter((x) => x.channel === e.channel && x.local.slice(0, 10) === e.local.slice(0, 10));
+    assert.equal(sameDay.length, 1, `${e.id} shares its day with another ${e.channel} post`);
+  }
 });
