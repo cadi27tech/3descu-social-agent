@@ -16,12 +16,12 @@ import {
 const rows = parse(readFileSync('data/calendar-q4-2026.csv'), { columns: true, bom: true }) as Record<string, string>[];
 const committed = JSON.parse(readFileSync('data/schedule.json', 'utf8')) as Entry[];
 
-test('calendar parse: 177 rows in, drafts excluded, committed schedule is current', () => {
-  assert.equal(rows.length, 177);
+test('calendar parse: 197 rows in, drafts excluded, committed schedule is current', () => {
+  assert.equal(rows.length, 197);
   const drafts = rows.filter((r) => r.Draft === 'TRUE').length;
   assert.equal(drafts, 4);
   const built = buildSchedule(rows);
-  assert.equal(built.length, 177 - drafts);
+  assert.equal(built.length, 197 - drafts);
   assert.ok(built.every((e) => e.draft === false));
   assert.deepEqual(committed, built, 'data/schedule.json is stale or hand-edited: run npm run build:schedule');
   assert.equal(new Set(committed.map((e) => e.id)).size, committed.length, 'ids unique');
@@ -167,6 +167,25 @@ test('card payments posts: 10 posts, no card-cost wording, one post per channel 
   assert.deepEqual(PAY.map((e) => e.channel).sort().join(), 'facebook,facebook,facebook,facebook,instagram,instagram,instagram,instagram,linkedin,linkedin');
   for (const e of PAY) {
     for (const t of [e.caption, ...e.alt]) assert.ok(!CARD_COST.test(t), `${e.id}: ${t.match(CARD_COST)?.[0]}`);
+    const sameDay = committed.filter((x) => x.channel === e.channel && x.local.slice(0, 10) === e.local.slice(0, 10));
+    assert.equal(sameDay.length, 1, `${e.id} shares its day with another ${e.channel} post`);
+  }
+});
+
+// Explainer videos (2026-10): ten reels, each on Facebook and Instagram, from the approved 9:16 EN files. Links are clean
+// (no tracking parameters in a caption) and Instagram says "link in bio", because its captions do not link.
+const EXPLAINERS = committed.filter((e) => e.media.some((m) => m.startsWith('video/explainer-')));
+
+test('explainer video posts: 20 reels, clean links, files present, one post per channel per day', () => {
+  assert.equal(EXPLAINERS.length, 20);
+  assert.equal(new Set(EXPLAINERS.map((e) => e.media[0])).size, 10, 'ten different videos');
+  for (const e of EXPLAINERS) {
+    assert.equal(e.media_type, 'reel', e.id);
+    assert.ok(existsSync(`media/${e.media[0]}`), `${e.id}: media/${e.media[0]} is not committed`);
+    assert.ok(!/utm_|https?:\/\/\S*\?/.test(e.caption), `${e.id}: the caption carries a tracking link`);
+    if (e.channel === 'instagram') assert.ok(!/https?:\/\//.test(e.caption) && /link in bio/.test(e.caption), `${e.id}: Instagram needs "link in bio" and no URL`);
+    else assert.ok(/https:\/\/quote\.3descu\.com/.test(e.caption), `${e.id}: Facebook needs the quote link`);
+    assert.ok((e.caption.match(/#\w+/g) ?? []).length <= 3, `${e.id}: more than 3 hashtags`);
     const sameDay = committed.filter((x) => x.channel === e.channel && x.local.slice(0, 10) === e.local.slice(0, 10));
     assert.equal(sameDay.length, 1, `${e.id} shares its day with another ${e.channel} post`);
   }
