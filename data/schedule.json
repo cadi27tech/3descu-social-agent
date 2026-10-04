@@ -2922,5 +2922,325 @@
       "Reihen geschlossener 3D-Drucker in der 3Descu Produktionshalle, mit dem Text Zahlung per Überweisung oder Karte: Überweisungspreis empfohlen, Standardpreis für Karte per Stripe oder PayPal auf Anfrage."
     ],
     "draft": false
+  },
+  {
+    "id": "q4w43-mon-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-19T10:00:00.000Z",
+    "local": "2026-10-19 12:00 Europe/Berlin",
+    "caption": "Never a gamble.\nOne of the largest 3D printing factories in Eastern Europe, with 200+ printers. ISO 9001:2015 certified factory. Reprint or refund, in writing.\nGet your instant price: https://quote.3descu.com\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v4-swiss-trust.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w43-mon-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-19T10:30:00.000Z",
+    "local": "2026-10-19 12:30 Europe/Berlin",
+    "caption": "Never a gamble.\nOne of the largest 3D printing factories in Eastern Europe, with 200+ printers. ISO 9001:2015 certified factory. Reprint or refund, in writing.\nGet your instant price: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v4-swiss-trust.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w43-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-21T10:00:00.000Z",
+    "local": "2026-10-21 12:00 Europe/Berlin",
+    "caption": "Your design. Our promise.\nMutual NDA on request, an ISO 9001:2015 certified factory, and reprint or refund in writing. Rated 4.7 / 5.\nUpload your file: https://quote.3descu.com\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v2-the-promise.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w43-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-21T10:30:00.000Z",
+    "local": "2026-10-21 12:30 Europe/Berlin",
+    "caption": "Your design. Our promise.\nMutual NDA on request, an ISO 9001:2015 certified factory, and reprint or refund in writing. Rated 4.7 / 5.\nUpload your file: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v2-the-promise.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w44-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-28T11:00:00.000Z",
+    "local": "2026-10-28 12:00 Europe/Berlin",
+    "caption": "The factory in numbers.\n200+ printers. 1,200+ orders. 450+ clients. 10+ EU countries. Rated 4.7 / 5.\nYour part could be next: https://quote.3descu.com\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v8-by-the-numbers.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w44-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-28T11:30:00.000Z",
+    "local": "2026-10-28 12:30 Europe/Berlin",
+    "caption": "The factory in numbers.\n200+ printers. 1,200+ orders. 450+ clients. 10+ EU countries. Rated 4.7 / 5.\nYour part could be next: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v8-by-the-numbers.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w45-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-11-04T11:00:00.000Z",
+    "local": "2026-11-04 12:00 Europe/Berlin",
+    "caption": "Three steps. That's it.\nUpload your file, pick your material, see your price and delivery date in under a minute. No account needed.\nGet your instant price: https://quote.3descu.com\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v5-three-steps.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w45-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-11-04T11:30:00.000Z",
+    "local": "2026-11-04 12:30 Europe/Berlin",
+    "caption": "Three steps. That's it.\nUpload your file, pick your material, see your price and delivery date in under a minute. No account needed.\nGet your instant price: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v5-three-steps.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w46-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-11-11T11:00:00.000Z",
+    "local": "2026-11-11 12:00 Europe/Berlin",
+    "caption": "Need a part made? Upload your 3D file and see your price and delivery date in under a minute.\nNo account. Nothing is ordered until you accept.\nGet your instant price: https://quote.3descu.com\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v1-minute-factory.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w46-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-11-11T11:30:00.000Z",
+    "local": "2026-11-11 12:30 Europe/Berlin",
+    "caption": "Need a part made? Upload your 3D file and see your price and delivery date in under a minute.\nNo account. Nothing is ordered until you accept.\nGet your instant price: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v1-minute-factory.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w47-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-11-18T11:00:00.000Z",
+    "local": "2026-11-18 12:00 Europe/Berlin",
+    "caption": "The right plastic makes the part.\nPLA, PETG, ASA, TPU, PA12 nylon or SLA resin: 27 FDM polymers + SLA resin, chosen right on the quote.\nPick yours: https://quote.3descu.com/materials\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v9-right-material.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w47-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-11-18T11:30:00.000Z",
+    "local": "2026-11-18 12:30 Europe/Berlin",
+    "caption": "The right plastic makes the part.\nPLA, PETG, ASA, TPU, PA12 nylon or SLA resin: 27 FDM polymers + SLA resin, chosen right on the quote.\nPick yours: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v9-right-material.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w48-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-11-25T11:00:00.000Z",
+    "local": "2026-11-25 12:00 Europe/Berlin",
+    "caption": "It starts with one part. Then 10. Then 1,000.\nOne of the largest 3D printing factories in Eastern Europe, with 200+ printers. Same factory, same quality.\nGet your instant price: https://quote.3descu.com/applications/short-run-production\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v3-one-to-a-thousand.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w48-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-11-25T11:30:00.000Z",
+    "local": "2026-11-25 12:30 Europe/Berlin",
+    "caption": "It starts with one part. Then 10. Then 1,000.\nOne of the largest 3D printing factories in Eastern Europe, with 200+ printers. Same factory, same quality.\nGet your instant price: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v3-one-to-a-thousand.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w49-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-12-02T11:00:00.000Z",
+    "local": "2026-12-02 12:00 Europe/Berlin",
+    "caption": "Inside the factory.\nOne of the largest 3D printing factories in Eastern Europe, with 200+ printers. 1,200+ orders, rated 4.7 / 5.\nGet your instant price: https://quote.3descu.com\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v6-inside-the-factory.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w49-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-12-02T11:30:00.000Z",
+    "local": "2026-12-02 12:30 Europe/Berlin",
+    "caption": "Inside the factory.\nOne of the largest 3D printing factories in Eastern Europe, with 200+ printers. 1,200+ orders, rated 4.7 / 5.\nGet your instant price: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v6-inside-the-factory.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w50-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-12-09T11:00:00.000Z",
+    "local": "2026-12-09 12:00 Europe/Berlin",
+    "caption": "Your part, priced in under a minute.\nISO 9001:2015 certified factory, mutual NDA on request, reprint or refund in writing. Rated 4.7 / 5.\nGet your instant price: https://quote.3descu.com\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-premium-full-circle.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w50-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-12-09T11:30:00.000Z",
+    "local": "2026-12-09 12:30 Europe/Berlin",
+    "caption": "Your part, priced in under a minute.\nISO 9001:2015 certified factory, mutual NDA on request, reprint or refund in writing. Rated 4.7 / 5.\nGet your instant price: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-premium-full-circle.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w51-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-12-16T11:00:00.000Z",
+    "local": "2026-12-16 12:00 Europe/Berlin",
+    "caption": "4 questions before you outsource a part.\nDesign safe? Mutual NDA on request. Who makes it? An ISO 9001:2015 certified factory. Part wrong? Reprint or refund, in writing.\nUpload your file: https://quote.3descu.com\n\n#3DPrinting #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v7-four-questions.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w51-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-12-16T11:30:00.000Z",
+    "local": "2026-12-16 12:30 Europe/Berlin",
+    "caption": "4 questions before you outsource a part.\nDesign safe? Mutual NDA on request. Who makes it? An ISO 9001:2015 certified factory. Part wrong? Reprint or refund, in writing.\nUpload your file: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "media_type": "reel",
+    "media": [
+      "video/explainer-v7-four-questions.mp4"
+    ],
+    "alt": [
+      ""
+    ],
+    "draft": false
   }
 ]
