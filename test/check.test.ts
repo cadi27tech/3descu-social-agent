@@ -19,9 +19,7 @@ const committed = JSON.parse(readFileSync('data/schedule.json', 'utf8')) as Entr
 test('calendar parse: 197 rows in, drafts excluded, committed schedule is current', () => {
   assert.equal(rows.length, 197);
   const drafts = rows.filter((r) => r.Draft === 'TRUE').length;
-  // 4 original drafts + the 6 DE/FR/NL card-payment posts held on 2026-10-07: their images still
-  // show the old two-price model, so they wait as drafts until the one-price images are rendered.
-  assert.equal(drafts, 10);
+  assert.equal(drafts, 4);
   const built = buildSchedule(rows);
   assert.equal(built.length, 197 - drafts);
   assert.ok(built.every((e) => e.draft === false));
@@ -164,9 +162,9 @@ test('50/50 is only ever offered by bank transfer', () => {
 const PAY = committed.filter((e) => e.media.some((m) => m.startsWith('gfx/payments/')));
 const CARD_COST = /\b(fees?|surcharges?)\b|Gebühr|Aufpreis|\bfrais\b|supplément|toeslag|\bkosten\b/i;
 
-test('card payments posts: 4 already out, 6 held, no card-cost wording, one post per channel per day', () => {
-  assert.equal(PAY.length, 4);
-  assert.deepEqual(PAY.map((e) => e.channel).sort().join(), 'facebook,instagram,linkedin,linkedin');
+test('card payments posts: 10 posts, no card-cost wording, one post per channel per day', () => {
+  assert.equal(PAY.length, 10);
+  assert.deepEqual(PAY.map((e) => e.channel).sort().join(), 'facebook,facebook,facebook,facebook,instagram,instagram,instagram,instagram,linkedin,linkedin');
   // One price for every payment method since 2026-10-07: nothing still to publish may describe two prices.
   const TWO_PRICES = /bank transfer price|standard price|Überweisungspreis|Standardpreis|prix virement|prix standard|overboekingsprijs|standaardprijs/i;
   for (const e of committed.filter((x) => x.mode === 'auto' && x.local >= '2026-10-08')) {
