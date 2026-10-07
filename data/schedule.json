@@ -2796,6 +2796,102 @@
     "draft": false
   },
   {
+    "id": "q4w41-thu-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-08T07:00:00.000Z",
+    "local": "2026-10-08 09:00 Europe/Berlin",
+    "caption": "Bezahlen Sie Ihre 3Descu-Rechnung per Überweisung oder per Karte.\n\nEin Preis, egal wie Sie bezahlen.\nÜberweisung empfohlen.\nKarte per sicherem Stripe-Link, PayPal auf Anfrage.\nJede Rechnung in €.\n\nDen vollständigen Leitfaden für Einkauf und Buchhaltung finden Sie in unserem Blog. Link in der Bio.\n\n#3DDruck #AdditiveFertigung #Fertigung #B2B #MadeInEU",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-de-1080x1350.jpg"
+    ],
+    "alt": [
+      "Geschlossene 3D-Drucker auf einer Werkbank in der 3Descu Fabrik, mit dem Text Zahlung per Überweisung oder Karte: ein Preis, egal wie Sie bezahlen, Überweisung empfohlen, Karte per Stripe oder PayPal auf Anfrage, jede Rechnung in Euro."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w41-sat-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-10T07:00:00.000Z",
+    "local": "2026-10-10 09:00 Europe/Berlin",
+    "caption": "Ihre 3Descu-Rechnung können Sie jetzt per Überweisung oder per Karte bezahlen.\n\nJedes Angebot hat einen Preis, egal wie Sie bezahlen. Wir empfehlen die Überweisung; die Karte läuft über einen sicheren Stripe-Link, PayPal auf Anfrage. Aufträge über 500 € können per Überweisung 50/50 bezahlt werden.\n\nAlles wird in € berechnet und bezahlt. Dieselbe Fabrik, dasselbe ISO 9001:2015 Zertifikat, Nachdruck oder Erstattung. Schriftlich.\n\nSo funktioniert die Zahlung (Artikel auf Englisch): https://www.3descu.com/post/pay-by-card-or-bank-transfer?utm_source=facebook&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w41-sat-facebook\n\n#3DDruck #Fertigung #B2B",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-de-1080x1350.jpg"
+    ],
+    "alt": [
+      "Geschlossene 3D-Drucker auf einer Werkbank in der 3Descu Fabrik, mit dem Text Zahlung per Überweisung oder Karte: ein Preis, egal wie Sie bezahlen, Überweisung empfohlen, Karte per Stripe oder PayPal auf Anfrage, jede Rechnung in Euro."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w41-sun-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-11T07:00:00.000Z",
+    "local": "2026-10-11 09:00 Europe/Berlin",
+    "caption": "Vous pouvez désormais régler une facture 3Descu par virement ou par carte.\n\nChaque offre a un seul prix, quel que soit le mode de paiement. Nous recommandons le virement ; la carte passe par un lien Stripe sécurisé, PayPal sur demande. Les commandes de plus de 500 € peuvent être réglées 50/50 par virement.\n\nTout est facturé et réglé en €. La même usine, le même certificat ISO 9001:2015, la même garantie de réimpression ou de remboursement, par écrit.\n\nLe paiement en détail (article en anglais) : https://www.3descu.com/post/pay-by-card-or-bank-transfer?utm_source=facebook&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w41-sun-facebook\n\n#Impression3D #Fabrication #B2B",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-fr-1080x1350.jpg"
+    ],
+    "alt": [
+      "Imprimantes 3D fermées sur un établi de l'usine 3Descu, avec le texte Payez par virement ou par carte : un seul prix quel que soit le mode de paiement, virement recommandé, carte via Stripe ou PayPal sur demande, toutes les factures en euros."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w41-sun-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-11T07:00:00.000Z",
+    "local": "2026-10-11 09:00 Europe/Berlin",
+    "caption": "Réglez votre facture 3Descu par virement ou par carte.\n\nUn seul prix, quel que soit le mode de paiement.\nVirement recommandé.\nCarte via lien Stripe sécurisé, PayPal sur demande.\nToutes les factures en €.\n\nLe guide complet pour les équipes achats et comptabilité est sur notre blog. Lien dans la bio.\n\n#Impression3D #FabricationAdditive #Fabrication #B2B #MadeInEU",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-fr-1080x1350.jpg"
+    ],
+    "alt": [
+      "Imprimantes 3D fermées sur un établi de l'usine 3Descu, avec le texte Payez par virement ou par carte : un seul prix quel que soit le mode de paiement, virement recommandé, carte via Stripe ou PayPal sur demande, toutes les factures en euros."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w42-wed-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-14T07:00:00.000Z",
+    "local": "2026-10-14 09:00 Europe/Berlin",
+    "caption": "U kunt een 3Descu-factuur nu betalen per overboeking of per kaart.\n\nElke offerte heeft één prijs, hoe u ook betaalt. Wij raden overboeking aan; kaartbetaling verloopt via een beveiligde Stripe-link, PayPal op aanvraag. Orders boven € 500 kunnen per overboeking 50/50 worden betaald.\n\nAlles wordt gefactureerd en betaald in €. Dezelfde fabriek, hetzelfde ISO 9001:2015 certificaat, dezelfde garantie op herdruk of terugbetaling, schriftelijk vastgelegd.\n\nBetalen uitgelegd (artikel in het Engels): https://www.3descu.com/post/pay-by-card-or-bank-transfer?utm_source=facebook&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed-facebook\n\n#3Dprinten #Productie #B2B",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-nl-1080x1350.jpg"
+    ],
+    "alt": [
+      "Gesloten 3D-printers op een werkbank in de 3Descu fabriek, met de tekst Betalen per overboeking of kaart: één prijs hoe u ook betaalt, overboeking aanbevolen, kaart via Stripe of PayPal op aanvraag, elke factuur in euro."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w42-wed-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-14T07:00:00.000Z",
+    "local": "2026-10-14 09:00 Europe/Berlin",
+    "caption": "Betaal uw 3Descu-factuur per overboeking of per kaart.\n\nEén prijs, hoe u ook betaalt.\nOverboeking aanbevolen.\nKaart via beveiligde Stripe-link, PayPal op aanvraag.\nElke factuur in €.\n\nDe volledige gids voor inkoop en financiële administratie staat op onze blog. Link in bio.\n\n#3Dprinten #AdditiveManufacturing #Productie #B2B #MadeInEU",
+    "media_type": "image",
+    "media": [
+      "gfx/payments/social-nl-1080x1350.jpg"
+    ],
+    "alt": [
+      "Gesloten 3D-printers op een werkbank in de 3Descu fabriek, met de tekst Betalen per overboeking of kaart: één prijs hoe u ook betaalt, overboeking aanbevolen, kaart via Stripe of PayPal op aanvraag, elke factuur in euro."
+    ],
+    "draft": false
+  },
+  {
     "id": "q4w40-sun-linkedin",
     "channel": "linkedin",
     "mode": "manual",
