@@ -521,7 +521,7 @@
     "mode": "manual",
     "publish_at": "2026-10-14T07:00:00.000Z",
     "local": "2026-10-14 09:00 Europe/Berlin",
-    "caption": "PETG is the default for functional parts. Here is where the default stops working.\n\nTougher than PLA, easier to print than ABS, resistant to water and most household chemicals: that is why housings, brackets and functional prototypes start in PETG.\n\nWhere it stops: sustained heat and long outdoor exposure. For sun, ASA. For heat and impact, ABS or polycarbonate.\n\nOur PETG guide covers the limits, food contact questions and the design rules.\n\nRead the guide: https://www.3descu.com/post/petg-3d-printing?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed\n\nPrice your part: https://quote.3descu.com/?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "caption": "PETG is the default for functional parts. Here is where the default stops working.\n\nTougher than PLA, easier to print than ABS, resistant to water and most household chemicals: that is why housings, brackets and functional prototypes start in PETG.\n\nIt also holds up outdoors, in sun and rain. Where it stops: sustained heat. Its practical limit is about 70-75 °C; for parts that must withstand roughly 80 °C or more, ASA. For heat and impact, ABS or polycarbonate.\n\nOur PETG guide covers the limits, food contact questions and the design rules.\n\nRead the guide: https://www.3descu.com/post/petg-3d-printing?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed\n\nPrice your part: https://quote.3descu.com/?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
     "media_type": "image",
     "media": [
       "gfx/m2-petg.jpg"
@@ -537,7 +537,7 @@
     "mode": "manual",
     "publish_at": "2026-10-14T08:00:00.000Z",
     "local": "2026-10-14 10:00 Europe/Berlin",
-    "caption": "Which filament for a functional part?\n\nStart with what the part must survive. PETG for housings and brackets, ASA outdoors, TPU where it must bend, PA12 where it wears. Ten material guides on our blog, and every material is priced instantly at quote.3descu.com.\n\nRead the guide: https://www.3descu.com/post/petg-3d-printing?utm_source=gbp&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed-gbp\n\nPrice your part: https://quote.3descu.com/?utm_source=gbp&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed-gbp",
+    "caption": "Which filament for a functional part?\n\nStart with what the part must survive. PETG for housings, brackets and outdoor parts, ASA where it must withstand roughly 80 °C or more, TPU where it must bend, PA12 where it wears. Ten material guides on our blog, and every material is priced instantly at quote.3descu.com.\n\nRead the guide: https://www.3descu.com/post/petg-3d-printing?utm_source=gbp&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed-gbp\n\nPrice your part: https://quote.3descu.com/?utm_source=gbp&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w42-wed-gbp",
     "media_type": "image",
     "media": [
       "photo/NEW/0013.jpg"
@@ -721,13 +721,13 @@
     "mode": "manual",
     "publish_at": "2026-10-21T07:00:00.000Z",
     "local": "2026-10-21 09:00 Europe/Berlin",
-    "caption": "Will the part spend more than a season outside? Then the answer is almost always ASA.\n\nASA is ABS reformulated to survive sunlight. It keeps the heat and impact resistance of ABS without the yellowing and surface chalking that end an ABS part left outdoors.\n\nTypical jobs: outdoor housings and mounts, signage and fixtures in daylight, exterior trim. The UV resistance belongs to the polymer, not the colour.\n\nRead the guide: https://www.3descu.com/post/asa-3d-printing?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w43-wed\n\nPrice your part: https://quote.3descu.com/?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w43-wed\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
+    "caption": "When does a part need ASA instead of PETG? When it must withstand roughly 80 °C or more.\n\nFor most parts, outdoor ones included, PETG is the right default: cheap, strong, chemically resistant and fine in sun and rain. Its practical limit is about 70-75 °C.\n\nASA takes over above that. It is UV stable and holds its shape to about 90 °C. Typical jobs: housings, mounts and trim that must withstand roughly 80 °C or more, indoors or out.\n\nRead the guide: https://www.3descu.com/post/asa-3d-printing?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w43-wed\n\nPrice your part: https://quote.3descu.com/?utm_source=linkedin&utm_medium=social&utm_campaign=q4_2026&utm_content=q4w43-wed\n\n#3DPrinting #AdditiveManufacturing #Manufacturing",
     "media_type": "image",
     "media": [
       "gfx/m4-asa.jpg"
     ],
     "alt": [
-      "Dark 3Descu brand card with the heading \"ASA\" and the line \"Parts that live outdoors for more than a season. ABS reformulated to survive sunlight.\""
+      "Dark 3Descu brand card with the heading \"ASA\" and the line \"Parts that must withstand roughly 80 °C or more. UV stable, holds its shape to about 90 °C.\""
     ],
     "draft": false
   },
@@ -848,7 +848,7 @@
       "Dark 3Descu brand card with the heading \"PLA\" and the line \"Fit models, display parts, single-use jigs. Not for heat, sun or sustained load.\"",
       "Dark 3Descu brand card with the heading \"PETG\" and the line \"Housings, brackets, functional prototypes. Tougher than PLA, easier to print than ABS, resists water and most household chemicals.\"",
       "Dark 3Descu brand card with the heading \"ABS\" and the line \"Engineering parts that need heat and impact resistance, and can be drilled and tapped after printing.\"",
-      "Dark 3Descu brand card with the heading \"ASA\" and the line \"Parts that live outdoors for more than a season. ABS reformulated to survive sunlight.\"",
+      "Dark 3Descu brand card with the heading \"ASA\" and the line \"Parts that must withstand roughly 80 °C or more. UV stable, holds its shape to about 90 °C.\"",
       "Dark 3Descu brand card with the heading \"TPU\" and the line \"Gaskets, seals, grips and bumpers. The filament that bends and returns to shape.\""
     ],
     "draft": false
@@ -2195,7 +2195,7 @@
       "gfx/m11-compare.jpg"
     ],
     "alt": [
-      "Dark 3Descu brand card with the heading \"Same shape, four different jobs.\" and the line \"PLA for fit models, PETG for housings, ASA outdoors, carbon fibre filled for stiff jigs.\""
+      "Dark 3Descu brand card with the heading \"Same shape, four different jobs.\" and the line \"PLA for fit models, PETG for housings and outdoor parts, ASA above about 80 °C, carbon fibre filled for stiff jigs.\""
     ],
     "draft": false
   },
@@ -2211,7 +2211,7 @@
       "gfx/m11-compare.jpg"
     ],
     "alt": [
-      "Dark 3Descu brand card with the heading \"Same shape, four different jobs.\" and the line \"PLA for fit models, PETG for housings, ASA outdoors, carbon fibre filled for stiff jigs.\""
+      "Dark 3Descu brand card with the heading \"Same shape, four different jobs.\" and the line \"PLA for fit models, PETG for housings and outdoor parts, ASA above about 80 °C, carbon fibre filled for stiff jigs.\""
     ],
     "draft": false
   },
