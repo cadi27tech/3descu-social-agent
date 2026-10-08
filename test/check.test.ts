@@ -165,6 +165,11 @@ const CARD_COST = /\b(fees?|surcharges?)\b|Gebühr|Aufpreis|\bfrais\b|supplémen
 test('card payments posts: 10 posts, no card-cost wording, one post per channel per day', () => {
   assert.equal(PAY.length, 10);
   assert.deepEqual(PAY.map((e) => e.channel).sort().join(), 'facebook,facebook,facebook,facebook,instagram,instagram,instagram,instagram,linkedin,linkedin');
+  // One price for every payment method since 2026-10-07: nothing still to publish may describe two prices.
+  const TWO_PRICES = /bank transfer price|standard price|Überweisungspreis|Standardpreis|prix virement|prix standard|overboekingsprijs|standaardprijs/i;
+  for (const e of committed.filter((x) => x.mode === 'auto' && x.local >= '2026-10-08')) {
+    for (const t of [e.caption, ...e.alt]) assert.ok(!TWO_PRICES.test(t), `${e.id}: ${t.match(TWO_PRICES)?.[0]}`);
+  }
   for (const e of PAY) {
     for (const t of [e.caption, ...e.alt]) assert.ok(!CARD_COST.test(t), `${e.id}: ${t.match(CARD_COST)?.[0]}`);
     const sameDay = committed.filter((x) => x.channel === e.channel && x.local.slice(0, 10) === e.local.slice(0, 10));
