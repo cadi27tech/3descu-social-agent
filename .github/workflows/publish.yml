@@ -3,6 +3,8 @@ name: Publish social calendar
 # Every 15 min, offset from :00 to dodge the top-of-hour Actions queue. Calendar slots sit
 # on :00 and :30 (08:30, 12:30, 09:30, 11:30), so hourly would post half-hour slots 35+ min
 # late. Minutes are free on a public repo; a run with nothing due takes about 15 s.
+# In practice GitHub fires this cron only ~5 times a day, hours apart (Sep-Oct 2026), so it is a
+# fallback: the hand-over step below is what posts each slot on time.
 on:
   schedule:
     - cron: '5,20,35,50 * * * *'
@@ -15,6 +17,7 @@ on:
 
 permissions:
   contents: write
+  actions: write # hand-over: start the next run
 
 concurrency:
   group: social-publisher
@@ -23,7 +26,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 355 # 5.5 h hand-over wait + publishing
     steps:
       # Code + data only: media/ is served from the repo by URL, never needed on the runner.
       - uses: actions/checkout@v7
@@ -58,6 +61,22 @@ jobs:
           git commit -m 'chore(state): record published posts'
           git pull --rebase origin "$GITHUB_REF_NAME"
           git push origin "HEAD:$GITHUB_REF_NAME"
+
+      # Wait for the next slot, then start a fresh run so it posts on time. A slot up to 12 h out
+      # is reached in hops of at most 5.5 h (the job cap is 6 h); cron gaps never exceeded 9.7 h,
+      # so some run always lands inside 12 h. The repo token may start workflow_dispatch runs.
+      # A cron run that fires meanwhile queues behind this one and is replaced by the hand-over.
+      - name: Hand over to the next slot
+        if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          s=$(node src/next.ts)
+          if [ -z "$s" ] || [ "$s" -gt 43200 ]; then echo "next slot not within 12 h, cron picks it up"; exit 0; fi
+          w=$(( s < 19800 ? s : 19800 ))
+          echo "next slot in $s s, handing over in $w s"
+          sleep "$w"
+          gh workflow run publish.yml --ref "$GITHUB_REF_NAME"
 
       - name: Fail the run if a post failed or was missed
         if: steps.publish.outcome == 'failure'

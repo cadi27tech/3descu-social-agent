@@ -155,6 +155,17 @@ export function selectDue(
   return { due, missed };
 }
 
+/** Publish time (ms) of the earliest auto entry still ahead and not yet handled, or null. */
+export function nextSlot(entries: Entry[], state: State, now: Date): number | null {
+  let next: number | null = null;
+  for (const e of entries) {
+    if (e.mode !== 'auto' || state[e.id]) continue;
+    const at = Date.parse(e.publish_at);
+    if (at > now.getTime() && (next === null || at < next)) next = at;
+  }
+  return next;
+}
+
 /**
  * Publish every due entry once. State is mutated and handed to save() after each
  * entry, so a crash mid-run never loses a recorded post.
