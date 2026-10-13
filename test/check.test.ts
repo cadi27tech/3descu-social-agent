@@ -7,6 +7,7 @@ import {
   buildSchedule,
   isoWeek,
   MAX_ATTEMPTS,
+  nextSlot,
   runDue,
   selectDue,
   type Entry,
@@ -101,9 +102,20 @@ test('due selection around DST', () => {
   assert.deepEqual(ids(selectDue(all, {}, new Date('2026-10-26T10:30:00Z')).due), [], 'post-switch slot is 11:00Z');
   const late = selectDue(all, {}, new Date('2026-10-26T11:05:00Z'));
   assert.deepEqual(ids(late.due), ['mon']);
-  assert.deepEqual(ids(late.missed), ['sat'], 'over 6 h overdue is missed, never posted late');
-  const edge = selectDue([before], {}, new Date('2026-10-24T16:00:00Z'));
-  assert.deepEqual(ids(edge.due), ['sat'], 'exactly 6 h late still posts');
+  assert.deepEqual(ids(late.missed), ['sat'], 'over 24 h overdue is missed, never posted late');
+  const edge = selectDue([before], {}, new Date('2026-10-25T10:00:00Z'));
+  assert.deepEqual(ids(edge.due), ['sat'], 'exactly 24 h late still posts');
+});
+
+test('next slot: earliest future auto entry not yet handled', () => {
+  const a = mk('a', '2026-11-02', '12:00'); // 11:00Z
+  const b = mk('b', '2026-11-02', '12:30'); // 11:30Z
+  const m = mk('m', '2026-11-02', '09:00', 'manual');
+  const at = (s: State, now: string) => nextSlot([b, m, a], s, new Date(now));
+  assert.equal(at({}, '2026-11-02T07:00:00Z'), Date.parse('2026-11-02T11:00:00Z'), 'manual rows are not waited for');
+  assert.equal(at({ a: { status: 'published', at: 'x' } }, '2026-11-02T07:00:00Z'), Date.parse('2026-11-02T11:30:00Z'));
+  assert.equal(at({}, '2026-11-02T11:00:00Z'), Date.parse('2026-11-02T11:30:00Z'), 'a slot due now is posted, not waited for');
+  assert.equal(at({}, '2026-11-02T12:00:00Z'), null);
 });
 
 test('idempotency: a second run publishes nothing, failures retry up to the cap', async () => {
