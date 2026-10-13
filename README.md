@@ -16,7 +16,7 @@ Publishes the pre-written Q4 2026 social calendar to the **3Descu Facebook Page*
 - **Automated channels:** `facebook` (image, multi-photo, Reel), `instagram` (image, carousel, Reel), `story` (Instagram Story, image or video). 104 posts, 1 Oct to 29 Dec 2026.
 - **Manual channels:** `linkedin`, `youtube`, `gbp` stay in the schedule with `"mode": "manual"`. They are scheduled natively elsewhere; this bot never touches them.
 - **Times:** the calendar is in Europe/Berlin wall-clock time; `publish_at` is UTC and already accounts for the 25 Oct 2026 DST switch.
-- **Due rule:** an entry is posted on the first run after `publish_at`. If it is more than 6 hours overdue it is recorded as `missed` and never posted late (so switching the bot on mid-quarter does not dump a backlog).
+- **Due rule:** an entry is posted on the first run after `publish_at`. If it is more than 24 hours overdue it is recorded as `missed` and never posted late (so switching the bot on mid-quarter does not dump a backlog).
 - **Idempotent:** every success is written to `data/published.json` straight away and committed even when another post in the same run failed. A recorded id is never posted again. A failed post is retried on the next runs, at most 3 attempts.
 - **Failure alerts:** a failed or missed post makes the run fail, and GitHub emails the repo owner. No Telegram, no personal data in logs.
 - **Dry run:** if any of the three secrets is missing, or the workflow is started with `dry_run`, it only logs what is due and exits 0. With secrets present, a dry run also checks them read-only (gets the Page token and the Instagram username).

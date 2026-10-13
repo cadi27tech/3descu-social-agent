@@ -29,7 +29,9 @@ export interface StateRecord {
 export type State = Record<string, StateRecord>;
 
 export const AUTO_CHANNELS: readonly Channel[] = ['facebook', 'instagram', 'story'];
-export const MAX_LATE_MS = 6 * 3600_000; // older than this = missed, never posted late
+// GitHub fires the 15-min cron only ~5 times a day (gaps up to 9.7 h seen, Sep-Oct 2026), so a
+// 6 h window dropped posts. 24 h still stops a backlog dump after a long outage.
+export const MAX_LATE_MS = 24 * 3600_000; // older than this = missed, never posted late
 export const MAX_ATTEMPTS = 3;
 export const MEDIA_URL_PREFIX =
   'https://zzamnvhadwibvafqcfpd.supabase.co/storage/v1/object/public/social-media/';

@@ -101,9 +101,9 @@ test('due selection around DST', () => {
   assert.deepEqual(ids(selectDue(all, {}, new Date('2026-10-26T10:30:00Z')).due), [], 'post-switch slot is 11:00Z');
   const late = selectDue(all, {}, new Date('2026-10-26T11:05:00Z'));
   assert.deepEqual(ids(late.due), ['mon']);
-  assert.deepEqual(ids(late.missed), ['sat'], 'over 6 h overdue is missed, never posted late');
-  const edge = selectDue([before], {}, new Date('2026-10-24T16:00:00Z'));
-  assert.deepEqual(ids(edge.due), ['sat'], 'exactly 6 h late still posts');
+  assert.deepEqual(ids(late.missed), ['sat'], 'over 24 h overdue is missed, never posted late');
+  const edge = selectDue([before], {}, new Date('2026-10-25T10:00:00Z'));
+  assert.deepEqual(ids(edge.due), ['sat'], 'exactly 24 h late still posts');
 });
 
 test('idempotency: a second run publishes nothing, failures retry up to the cap', async () => {
