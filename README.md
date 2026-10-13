@@ -18,6 +18,7 @@ Publishes the pre-written Q4 2026 social calendar to the **3Descu Facebook Page*
 - **Times:** the calendar is in Europe/Berlin wall-clock time; `publish_at` is UTC and already accounts for the 25 Oct 2026 DST switch.
 - **Due rule:** an entry is posted on the first run after `publish_at`. If it is more than 24 hours overdue it is recorded as `missed` and never posted late (so switching the bot on mid-quarter does not dump a backlog).
 - **Idempotent:** every success is written to `data/published.json` straight away and committed even when another post in the same run failed. A recorded id is never posted again. A failed post is retried on the next runs, at most 3 attempts.
+- **On-time posting:** GitHub fires the 15-min cron only a few times a day, so after publishing each run waits for the next slot (up to 12 h ahead, in hops of at most 5.5 h) and starts a fresh run at that minute with the repo token. The cron is the fallback that restarts the chain.
 - **Failure alerts:** a failed or missed post makes the run fail, and GitHub emails the repo owner. No Telegram, no personal data in logs.
 - **Dry run:** if any of the three secrets is missing, or the workflow is started with `dry_run`, it only logs what is due and exits 0. With secrets present, a dry run also checks them read-only (gets the Page token and the Instagram username).
 
