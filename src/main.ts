@@ -2,7 +2,7 @@
 // record it in data/published.json. Missing secrets or --dry-run = log only, exit 0.
 
 import { readFileSync, writeFileSync } from 'node:fs';
-import { runDue, selectDue, type Entry, type State } from './core.ts';
+import { MAX_LATE_MS, runDue, selectDue, type Entry, type State } from './core.ts';
 import { getPageToken, igUsername, publishEntry } from './meta.ts';
 
 const SCHEDULE = 'data/schedule.json';
@@ -32,7 +32,7 @@ if (dry) {
   const { due, missed } = selectDue(entries, state, now);
   console.log(`\nDue now: ${due.length}`);
   for (const e of due) console.log(`  would post  ${line(e)}\n    caption: ${JSON.stringify(e.caption.slice(0, 80))}`);
-  if (missed.length) console.log(`Too late to post (over 6 h overdue): ${missed.map((e) => e.id).join(', ')}`);
+  if (missed.length) console.log(`Too late to post (over ${MAX_LATE_MS / 3600_000} h overdue): ${missed.map((e) => e.id).join(', ')}`);
 
   const open = entries
     .filter((e) => e.mode === 'auto' && !state[e.id] && Date.parse(e.publish_at) > now.getTime())
@@ -61,6 +61,6 @@ const cfg = {
 const res = await runDue(entries, state, now, (e) => publishEntry(e, cfg), save);
 for (const id of res.published) console.log(`published  ${id}  ${state[id].ids?.join(',')}`);
 for (const id of res.failed) console.error(`FAILED     ${id}  attempt ${state[id].attempts}: ${state[id].error}`);
-for (const id of res.missed) console.error(`MISSED     ${id}  (more than 6 h overdue, not posted)`);
+for (const id of res.missed) console.error(`MISSED     ${id}  (more than ${MAX_LATE_MS / 3600_000} h overdue, not posted)`);
 console.log(`\n${res.published.length} published, ${res.failed.length} failed, ${res.missed.length} missed`);
 process.exit(res.failed.length || res.missed.length ? 1 : 0);
