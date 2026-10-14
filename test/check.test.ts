@@ -207,3 +207,10 @@ test('explainer video posts: 20 reels, clean links, files present, one post per 
     assert.equal(sameDay.length, 1, `${e.id} shares its day with another ${e.channel} post`);
   }
 });
+
+test('workflow: one run at a time, each reads the latest state (no double post)', () => {
+  const wf = readFileSync('.github/workflows/publish.yml', 'utf8');
+  assert.match(wf, /^concurrency:\s*\n\s*group: social-publisher\s*\n\s*cancel-in-progress: false$/m);
+  const checkout = wf.slice(wf.indexOf('uses: actions/checkout'), wf.indexOf('uses: actions/setup-node'));
+  assert.match(checkout, /ref: \$\{\{ github\.ref_name \}\}/, 'queued runs must check out the branch tip, not the trigger SHA');
+});
