@@ -29,8 +29,11 @@ jobs:
     timeout-minutes: 355 # 5.5 h hand-over wait + publishing
     steps:
       # Code + data only: media/ is served from the repo by URL, never needed on the runner.
+      # ref = the branch tip at start, not the trigger SHA: a run queued behind another must see
+      # the state that run pushed, or it re-posts the same slot (14 Oct 11:00 story went out twice).
       - uses: actions/checkout@v7
         with:
+          ref: ${{ github.ref_name }}
           filter: blob:none
           sparse-checkout: |
             src
