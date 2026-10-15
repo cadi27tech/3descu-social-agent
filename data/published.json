@@ -144,6 +144,13 @@
     "status": "missed",
     "at": "2026-10-12T19:21:51.676Z"
   },
+  "q4w42-thu-facebook": {
+    "status": "published",
+    "at": "2026-10-15T10:00:19.014Z",
+    "ids": [
+      "111288741805859_1090817943857768"
+    ]
+  },
   "q4w42-tue-facebook": {
     "status": "published",
     "at": "2026-10-13T20:03:11.413Z",
