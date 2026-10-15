@@ -3242,5 +3242,57 @@
       ""
     ],
     "draft": false
+  },
+  {
+    "id": "q4w42-thu-instagram",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-15T16:00:00.000Z",
+    "local": "2026-10-15 18:00 Europe/Berlin",
+    "caption": "Black Cat Escape Room x 3Descu 🐈‍⬛\n\n@blackcatescape in Warsaw builds its own escape rooms. For their newest game, the workshop needed more printers than it had, so part of the production came to our factory.\n\nWhat we printed:\n• 24 part designs, in black and a matched \"old gold\"\n• A corner with a flexing mechanism, printed with no supports at all\n• 4,000 black PETG cat pendants per batch, for their guests\n\nVisiting Warsaw: their Sunken Aztec Treasure room is waiting.\n\nFull case study: link in bio.\n\n#escaperoom #3dprinting #3dprinted #warsaw #warszawa #puzzledesign #setdesign #fdm #escaperoomdesign",
+    "media_type": "carousel",
+    "media": [
+      "gfx/blackcat/portrait-01-panel.jpg",
+      "gfx/blackcat/portrait-02-old-gold.jpg",
+      "gfx/blackcat/portrait-03-corner-no-supports.jpg",
+      "gfx/blackcat/portrait-04-cat-pendant.jpg",
+      "gfx/blackcat/portrait-05-pendants-closeup.jpg",
+      "gfx/blackcat/portrait-06-end-card.jpg"
+    ],
+    "alt": [
+      "Black Cat Escape Room workshop in Warsaw: a tall cabinet with a sculpted octopus panel next to a wall of carved relief tiles, with the title Black Cat Escape Room, Warsaw, printed parts by 3Descu.",
+      "Escape room furniture in the Black Cat workshop: a cabinet of carved drawer fronts and ornate panels with aged gold and black printed details.",
+      "A black 3D printed corner piece held in a hand, with a flexing latch mechanism in the middle that was printed with no supports.",
+      "A hand drops a black 3D printed cat pendant into an open wooden treasure chest filled with more pendants.",
+      "Close-up of a pile of black 3D printed cat pendants with a fine sparkle finish.",
+      "Dark 3Descu brand card with the logo and the lines Black Cat Escape Room x 3Descu and 200+ printers in an ISO 9001:2015 certified factory."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w42-sat-facebook",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-17T08:00:00.000Z",
+    "local": "2026-10-17 10:00 Europe/Berlin",
+    "caption": "Some of the parts inside Black Cat Escape Room's newest game in Warsaw were printed in our factory in Romania. 🐈‍⬛\n\nTheir workshop needed more capacity than its own 17 printers, so we printed 24 part designs in black and in a matched \"old gold\", including a corner with a flexing mechanism printed with no supports at all. Everything shipped in several boxes, so their team could assemble while we kept printing. Then came 4,000 black PETG cat pendants for their guests.\n\n\"Outsourcing part of the production to you freed up our internal capacity and significantly accelerated our project.\" Black Cat Escape Room workshop team\n\nIf you are in Warsaw, their Sunken Aztec Treasure and award-winning Warsaw Uprising rooms are at blackcat.pl.\n\n🇵🇱 Część elementów do najnowszej gry Black Cat Escape Room w Warszawie wydrukowaliśmy w naszej fabryce w Rumunii.\n\nThe full story: https://www.3descu.com/post/black-cat-escape-room-3d-printed-parts-case-study",
+    "media_type": "carousel",
+    "media": [
+      "gfx/blackcat/portrait-01-panel.jpg",
+      "gfx/blackcat/portrait-02-old-gold.jpg",
+      "gfx/blackcat/portrait-03-corner-no-supports.jpg",
+      "gfx/blackcat/portrait-04-cat-pendant.jpg",
+      "gfx/blackcat/portrait-05-pendants-closeup.jpg",
+      "gfx/blackcat/portrait-06-end-card.jpg"
+    ],
+    "alt": [
+      "Black Cat Escape Room workshop in Warsaw: a tall cabinet with a sculpted octopus panel next to a wall of carved relief tiles, with the title Black Cat Escape Room, Warsaw, printed parts by 3Descu.",
+      "Escape room furniture in the Black Cat workshop: a cabinet of carved drawer fronts and ornate panels with aged gold and black printed details.",
+      "A black 3D printed corner piece held in a hand, with a flexing latch mechanism in the middle that was printed with no supports.",
+      "A hand drops a black 3D printed cat pendant into an open wooden treasure chest filled with more pendants.",
+      "Close-up of a pile of black 3D printed cat pendants with a fine sparkle finish.",
+      "Dark 3Descu brand card with the logo and the lines Black Cat Escape Room x 3Descu and 200+ printers in an ISO 9001:2015 certified factory."
+    ],
+    "draft": false
   }
 ]
