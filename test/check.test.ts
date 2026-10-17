@@ -17,12 +17,12 @@ import {
 const rows = parse(readFileSync('data/calendar-q4-2026.csv'), { columns: true, bom: true }) as Record<string, string>[];
 const committed = JSON.parse(readFileSync('data/schedule.json', 'utf8')) as Entry[];
 
-test('calendar parse: 199 rows in, drafts excluded, committed schedule is current', () => {
-  assert.equal(rows.length, 199);
+test('calendar parse: 221 rows in, drafts excluded, committed schedule is current', () => {
+  assert.equal(rows.length, 221);
   const drafts = rows.filter((r) => r.Draft === 'TRUE').length;
   assert.equal(drafts, 4);
   const built = buildSchedule(rows);
-  assert.equal(built.length, 199 - drafts);
+  assert.equal(built.length, 221 - drafts);
   assert.ok(built.every((e) => e.draft === false));
   assert.deepEqual(committed, built, 'data/schedule.json is stale or hand-edited: run npm run build:schedule');
   assert.equal(new Set(committed.map((e) => e.id)).size, committed.length, 'ids unique');
@@ -213,4 +213,19 @@ test('workflow: one run at a time, each reads the latest state (no double post)'
   assert.match(wf, /^concurrency:\s*\n\s*group: social-publisher\s*\n\s*cancel-in-progress: false$/m);
   const checkout = wf.slice(wf.indexOf('uses: actions/checkout'), wf.indexOf('uses: actions/setup-node'));
   assert.match(checkout, /ref: \$\{\{ github\.ref_name \}\}/, 'queued runs must check out the branch tip, not the trigger SHA');
+});
+
+// Content pack 17 Oct 2026: 11 company posts adapted for Facebook and Instagram (LI-05 is the Black Cat story, already
+// run under its own name). Instagram says "link in bio" and carries no URL; Facebook keeps a clean link. 1080x1350 media.
+test('content pack 17 Oct: clean links, link in bio on Instagram, no dashes', () => {
+  // The pack runs at its LinkedIn slot times (09:30, 10:00, 15:00), which no other auto entry from 22 Oct uses.
+  const pack = committed.filter((e) => e.mode === 'auto' && e.local >= '2026-10-22' && ['09:30', '10:00', '15:00'].includes(e.local.slice(11, 16)));
+  assert.equal(pack.length, 22, pack.map((e) => e.id).join(' '));
+  for (const e of pack) {
+    assert.ok(!/utm_|[\u2012-\u2015]|€|4[.,]66/.test(e.caption), `${e.id}: tracking link, dash, euro sign or 4.66`);
+    if (e.channel === 'instagram') assert.ok(!/https?:\/\//.test(e.caption) && /link in bio/.test(e.caption), `${e.id}: Instagram needs "link in bio" and no URL`);
+    else assert.ok(/https:\/\/(quote\.3descu\.com|3descu\.zohobookings\.eu)/.test(e.caption), `${e.id}: Facebook needs the link`);
+    assert.ok((e.caption.match(/(^|\s)#\w+/g) ?? []).length <= 5, `${e.id}: more than 5 hashtags`);
+    for (const m of e.media) assert.ok(existsSync(`media/${m}`), `${e.id}: media/${m} is not committed`);
+  }
 });
