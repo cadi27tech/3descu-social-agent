@@ -112,7 +112,10 @@ export function buildSchedule(rows: Record<string, string>[]): Entry[] {
 
     const { week } = isoWeek(row.Date);
     const dow = DOW[new Date(`${row.Date}T12:00:00Z`).getUTCDay()];
-    const id = `q4w${week}-${dow}-${channel}`;
+    const base = `q4w${week}-${dow}-${channel}`;
+    // A second post on the same channel and day gets its slot time appended (q4w44-tue-facebook-1730),
+    // so every id already in data/published.json stays as it is. Same channel, day and time is still a duplicate.
+    const id = seen.has(base) ? `${base}-${row.Time.slice(0, 5).replace(':', '')}` : base;
     if (seen.has(id)) throw new Error(`Duplicate id ${id}`);
     seen.add(id);
 
