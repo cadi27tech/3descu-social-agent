@@ -17,12 +17,12 @@ import {
 const rows = parse(readFileSync('data/calendar-q4-2026.csv'), { columns: true, bom: true }) as Record<string, string>[];
 const committed = JSON.parse(readFileSync('data/schedule.json', 'utf8')) as Entry[];
 
-test('calendar parse: 221 rows in, drafts excluded, committed schedule is current', () => {
-  assert.equal(rows.length, 221);
+test('calendar parse: 224 rows in, drafts excluded, committed schedule is current', () => {
+  assert.equal(rows.length, 224);
   const drafts = rows.filter((r) => r.Draft === 'TRUE').length;
   assert.equal(drafts, 4);
   const built = buildSchedule(rows);
-  assert.equal(built.length, 221 - drafts);
+  assert.equal(built.length, 224 - drafts);
   assert.ok(built.every((e) => e.draft === false));
   assert.deepEqual(committed, built, 'data/schedule.json is stale or hand-edited: run npm run build:schedule');
   assert.equal(new Set(committed.map((e) => e.id)).size, committed.length, 'ids unique');
@@ -227,5 +227,20 @@ test('content pack 17 Oct: clean links, link in bio on Instagram, no dashes', ()
     else assert.ok(/https:\/\/(quote\.3descu\.com|3descu\.zohobookings\.eu)/.test(e.caption), `${e.id}: Facebook needs the link`);
     assert.ok((e.caption.match(/(^|\s)#\w+/g) ?? []).length <= 5, `${e.id}: more than 5 hashtags`);
     for (const m of e.media) assert.ok(existsSync(`media/${m}`), `${e.id}: media/${m} is not committed`);
+  }
+});
+
+// Romania Journal feature, 21 Oct 2026: FB + IG on Sun 25 Oct, Romanian FB on Sun 1 Nov. Article link on Facebook only.
+test('Romania Journal posts: slots, article link on Facebook, media committed, no dashes', () => {
+  const rj = committed.filter((e) => e.caption.includes('Romania Journal'));
+  assert.deepEqual(rj.map((e) => `${e.id} ${e.publish_at}`), [
+    'q4w43-sun-facebook 2026-10-25T09:30:00.000Z',
+    'q4w43-sun-instagram 2026-10-25T17:00:00.000Z',
+    'q4w44-sun-facebook 2026-11-01T09:30:00.000Z',
+  ]);
+  for (const e of rj) {
+    assert.ok(!/[‒-―]/.test(e.caption), `${e.id}: dash`);
+    assert.equal(/romaniajournal\.ro\/business\//.test(e.caption), e.channel === 'facebook', `${e.id}: article URL on Facebook only`);
+    for (const m of e.media) assert.ok(existsSync(`media/${m}`) && m.endsWith('.jpg'), `${e.id}: media/${m} missing or not JPG`);
   }
 });
