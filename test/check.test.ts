@@ -17,12 +17,12 @@ import {
 const rows = parse(readFileSync('data/calendar-q4-2026.csv'), { columns: true, bom: true }) as Record<string, string>[];
 const committed = JSON.parse(readFileSync('data/schedule.json', 'utf8')) as Entry[];
 
-test('calendar parse: 224 rows in, drafts excluded, committed schedule is current', () => {
-  assert.equal(rows.length, 224);
+test('calendar parse: 228 rows in, drafts excluded, committed schedule is current', () => {
+  assert.equal(rows.length, 228);
   const drafts = rows.filter((r) => r.Draft === 'TRUE').length;
   assert.equal(drafts, 4);
   const built = buildSchedule(rows);
-  assert.equal(built.length, 224 - drafts);
+  assert.equal(built.length, 228 - drafts);
   assert.ok(built.every((e) => e.draft === false));
   assert.deepEqual(committed, built, 'data/schedule.json is stale or hand-edited: run npm run build:schedule');
   assert.equal(new Set(committed.map((e) => e.id)).size, committed.length, 'ids unique');
@@ -193,7 +193,7 @@ test('card payments posts: 10 posts, no card-cost wording, one post per channel 
 // (no tracking parameters in a caption) and Instagram says "link in bio", because its captions do not link.
 const EXPLAINERS = committed.filter((e) => e.media.some((m) => m.startsWith('video/explainer-')));
 
-test('explainer video posts: 20 reels, clean links, files present, one post per channel per day', () => {
+test('explainer video posts: 20 reels, clean links, files present, no other post on the channel within 4 hours', () => {
   assert.equal(EXPLAINERS.length, 20);
   assert.equal(new Set(EXPLAINERS.map((e) => e.media[0])).size, 10, 'ten different videos');
   for (const e of EXPLAINERS) {
@@ -203,8 +203,29 @@ test('explainer video posts: 20 reels, clean links, files present, one post per 
     if (e.channel === 'instagram') assert.ok(!/https?:\/\//.test(e.caption) && /link in bio/.test(e.caption), `${e.id}: Instagram needs "link in bio" and no URL`);
     else assert.ok(/https:\/\/quote\.3descu\.com/.test(e.caption), `${e.id}: Facebook needs the quote link`);
     assert.ok((e.caption.match(/#\w+/g) ?? []).length <= 3, `${e.id}: more than 3 hashtags`);
-    const sameDay = committed.filter((x) => x.channel === e.channel && x.local.slice(0, 10) === e.local.slice(0, 10));
-    assert.equal(sameDay.length, 1, `${e.id} shares its day with another ${e.channel} post`);
+    // Was one post per channel per day; since the press posts (2026-10) an evening post may follow a noon reel.
+    const near = committed.filter((x) => x.channel === e.channel && Math.abs(Date.parse(x.publish_at) - Date.parse(e.publish_at)) < 4 * 3600_000);
+    assert.equal(near.length, 1, `${e.id} is within 4 hours of another ${e.channel} post`);
+  }
+});
+
+// Press coverage, 21 Oct 2026 (Profit.ro, Observator, Click!, Gorjul Azi, Romania Journal): EN Facebook + Instagram on
+// Tue 27 Oct, RO on Wed 28 Oct, 18:30 and 19:00 Bucharest. Both days already carry a noon post, so the ids get a time suffix.
+test('press coverage posts: slots, Profit.ro link on Facebook only, JPG media, no dashes', () => {
+  const press = committed.filter((e) => e.media.some((m) => m.startsWith('gfx/press/')));
+  assert.deepEqual(press.map((e) => `${e.id} ${e.publish_at}`).sort(), [
+    'q4w44-tue-facebook-1730 2026-10-27T16:30:00.000Z',
+    'q4w44-tue-instagram-1800 2026-10-27T17:00:00.000Z',
+    'q4w44-wed-facebook-1730 2026-10-28T16:30:00.000Z',
+    'q4w44-wed-instagram-1800 2026-10-28T17:00:00.000Z',
+  ]);
+  for (const e of press) {
+    const all = [e.caption, ...e.alt].join(' ');
+    assert.ok(!/[\u2012-\u2015]|4[.,]66|\bEUR\b|marketplace|marketplace|marketplace/i.test(all), `${e.id}: dash, 4.66, EUR or a marketplace name`);
+    if (e.channel === 'instagram') assert.ok(!/https?:\/\//.test(e.caption) && /link (in|\u00een) bio/.test(e.caption), `${e.id}: Instagram needs "link in bio" and no URL`);
+    else assert.ok(/https:\/\/www\.profit\.ro\/\S+-22863423/.test(e.caption), `${e.id}: Facebook needs the Profit.ro link`);
+    assert.ok(e.alt.length === 1 && e.alt[0].length > 50, `${e.id}: alt text`);
+    for (const m of e.media) assert.ok(existsSync(`media/${m}`) && m.endsWith('.jpg'), `${e.id}: media/${m} missing or not JPG`);
   }
 });
 
@@ -232,7 +253,7 @@ test('content pack 17 Oct: clean links, link in bio on Instagram, no dashes', ()
 
 // Romania Journal feature, 21 Oct 2026: FB + IG on Sun 25 Oct, Romanian FB on Sun 1 Nov. Article link on Facebook only.
 test('Romania Journal posts: slots, article link on Facebook, media committed, no dashes', () => {
-  const rj = committed.filter((e) => e.caption.includes('Romania Journal'));
+  const rj = committed.filter((e) => e.media.some((m) => m.startsWith('gfx/rj/')));
   assert.deepEqual(rj.map((e) => `${e.id} ${e.publish_at}`), [
     'q4w43-sun-facebook 2026-10-25T09:30:00.000Z',
     'q4w43-sun-instagram 2026-10-25T17:00:00.000Z',
