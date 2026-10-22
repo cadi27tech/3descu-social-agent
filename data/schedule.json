@@ -910,6 +910,38 @@
     "draft": false
   },
   {
+    "id": "q4w44-tue-instagram-1800",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-27T17:00:00.000Z",
+    "local": "2026-10-27 18:00 Europe/Berlin",
+    "caption": "As featured in Observator, Profit.ro, Click!, Romania Journal and Gorjul Azi.\n\n\"A factory started in an apartment with 5 printers by a young man who came home\" (Profit.ro headline, shortened and translated from Romanian)\n\n2022: five printers in a small apartment in Târgu Jiu, funded by a European grant for student entrepreneurs.\nToday: one of the largest 3D printing factories in Eastern Europe. 200+ printers, ISO 9001:2015 certified, 1,200+ orders for 450+ clients in 10+ countries, rated 4.7 / 5.\n\nThank you to every newsroom that told the story.\n\nFull article: link in bio.\n\n#3DPrinting #AdditiveManufacturing #Manufacturing #Engineering #MadeInRomania #TarguJiu #Gorj",
+    "media_type": "image",
+    "media": [
+      "gfx/press/press-en-instagram-1080x1350.jpg"
+    ],
+    "alt": [
+      "Portrait card reading \"As featured in Observator, Profit.ro, Click!, Romania Journal, Gorjul Azi\" with the translated Profit.ro headline and the figures 200+ printers, ISO 9001:2015, 1,200+ orders, 10+ countries, over a night photo of enclosed and open-frame 3D printers in the 3Descu factory."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w44-tue-facebook-1730",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-27T16:30:00.000Z",
+    "local": "2026-10-27 17:30 Europe/Berlin",
+    "caption": "Five newsrooms, one story from Târgu Jiu.\n\nOn 21 October, Profit.ro published how 3Descu went from five printers in a small apartment to one of the largest 3D printing factories in Eastern Europe. Observator, Click!, Gorjul Azi and Romania Journal carried it the same day.\n\n2022: a master's student's business plan wins first place on points for a European Social Fund grant of about €60,000.\nToday: 200+ printers, ISO 9001:2015 certified, 1,200+ orders for 450+ clients in 10+ countries, rated 4.7 / 5.\n\n\"I started with five 3D printers in a small apartment. I was the whole company.\" Adrian Căpraru in Profit.ro (translated from Romanian)\n\nThank you to the journalists who told the story, and to every engineer who trusted a young factory with their parts.\n\nProfit.ro (in Romanian): https://www.profit.ro/povesti-cu-profit/foto-fabrica-pornita-intr-un-apartament-cu-5-imprimante-de-un-tanar-intors-acasa-a-ajuns-la-afaceri-de-circa-1-milion-lei-toata-lumea-se-astepta-sa-plec-22863423\n\n#3DPrinting #MadeInRomania #TarguJiu",
+    "media_type": "image",
+    "media": [
+      "gfx/press/press-en-facebook-1200x627.jpg"
+    ],
+    "alt": [
+      "Card reading \"As featured in Observator, Profit.ro, Click!, Romania Journal, Gorjul Azi\" with the translated Profit.ro headline \"A factory started in an apartment with 5 printers by a young man who came home\" and the figures 200+ printers, ISO 9001:2015, 1,200+ orders, 10+ countries, next to a night photo of the 3Descu factory floor."
+    ],
+    "draft": false
+  },
+  {
     "id": "q4w44-wed-linkedin",
     "channel": "linkedin",
     "mode": "manual",
@@ -3016,6 +3048,38 @@
     ],
     "alt": [
       ""
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w44-wed-instagram-1800",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-10-28T17:00:00.000Z",
+    "local": "2026-10-28 18:00 Europe/Berlin",
+    "caption": "Au scris despre noi: Observator, Profit.ro, Click!, Romania Journal și Gorjul Azi.\n\n„Toată lumea se aștepta să plec. Dar un colet pentru Germania pleacă din Târgu Jiu la fel de repede ca din București. Am vrut să construiesc aici, acasă.” Adrian Căpraru, în Profit.ro\n\n2022: cinci imprimante 3D într-un apartament mic din Târgu Jiu.\nAstăzi: peste 200 de imprimante, fabrică certificată ISO 9001:2015, peste 1.200 de comenzi pentru clienți din peste 10 țări.\n\nPentru tinerii din Gorj: se poate construi aici, acasă.\n\nArticolul complet: link în bio.\n\n#Gorj #TarguJiu #MadeInRomania #3DPrinting #Antreprenoriat",
+    "media_type": "image",
+    "media": [
+      "gfx/press/press-ro-instagram-1080x1350.jpg"
+    ],
+    "alt": [
+      "Card portret cu textul „Au scris despre noi: Observator, Profit.ro, Click!, Romania Journal, Gorjul Azi” și citatul „Toată lumea se aștepta să plec. [...] Am vrut să construiesc aici, acasă”, Adrian Căpraru în Profit.ro, cu cifrele 200+ imprimante, ISO 9001:2015, 1.200+ comenzi, 10+ țări, peste o fotografie de noapte cu imprimante 3D din fabrica 3Descu."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w44-wed-facebook-1730",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-10-28T16:30:00.000Z",
+    "local": "2026-10-28 17:30 Europe/Berlin",
+    "caption": "Din Târgu Jiu, în presa națională.\n\nPe 21 octombrie, Profit.ro a publicat povestea 3Descu: „Fabrică pornită într-un apartament cu 5 imprimante de un tânăr întors acasă”. În aceeași zi au preluat-o Observator, Click! și Gorjul Azi, iar Romania Journal a scris despre noi în engleză.\n\nTotul a pornit în 2022, cu cinci imprimante 3D într-un apartament mic și un plan de afaceri scris de un masterand de la Universitatea „Constantin Brâncuși”, clasat primul la punctaj în programul STAR, finanțat din Fondul Social European. Astăzi, fabrica de pe Calea București are peste 200 de imprimante, este certificată ISO 9001:2015 și a livrat peste 1.200 de comenzi pentru peste 450 de clienți din peste 10 țări.\n\n„Toată lumea se aștepta să plec. Dar un colet pentru Germania pleacă din Târgu Jiu la fel de repede ca din București. Am vrut să construiesc aici, acasă.” Adrian Căpraru, în Profit.ro\n\nPentru studenții și tinerii din Gorj, mesajul lui din Gorjul Azi: „Dacă ești student aici și ai o idee, scrie-ți singur planul și aplică. Așa a început totul la noi.”\n\nMulțumim jurnaliștilor care au spus povestea și tuturor celor din Gorj care ne-au susținut de la primele cinci imprimante.\n\nArticolul Profit.ro: https://www.profit.ro/povesti-cu-profit/foto-fabrica-pornita-intr-un-apartament-cu-5-imprimante-de-un-tanar-intors-acasa-a-ajuns-la-afaceri-de-circa-1-milion-lei-toata-lumea-se-astepta-sa-plec-22863423\n\nArticolul Gorjul Azi: https://gorjulazi.ro/2026/10/21/povestea-de-succes-a-unui-gorjean-adrian-capraru-a-pornit-cu-5-imprimante-3d-si-a-construit-o-fabrica-ce-produce-pentru-toata-europa-foto.html\n\n#Gorj #TarguJiu #MadeInRomania #3DPrinting",
+    "media_type": "image",
+    "media": [
+      "gfx/press/press-ro-facebook-1200x627.jpg"
+    ],
+    "alt": [
+      "Card cu textul „Au scris despre noi: Observator, Profit.ro, Click!, Romania Journal, Gorjul Azi” și titlul Profit.ro „Fabrică pornită într-un apartament cu 5 imprimante de un tânăr întors acasă”, cu cifrele 200+ imprimante, ISO 9001:2015, 1.200+ comenzi, 10+ țări, lângă o fotografie de noapte din fabrica 3Descu."
     ],
     "draft": false
   },
