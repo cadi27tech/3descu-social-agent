@@ -260,7 +260,7 @@ test('Romania Journal posts: slots, article link on Facebook, media committed, n
     'q4w44-sun-facebook 2026-11-01T09:30:00.000Z',
   ]);
   for (const e of rj) {
-    assert.ok(!/[‒-―]/.test(e.caption), `${e.id}: dash`);
+    assert.ok(!/[\u2012-\u2015]/.test(e.caption), `${e.id}: dash`);
     assert.equal(/romaniajournal\.ro\/business\//.test(e.caption), e.channel === 'facebook', `${e.id}: article URL on Facebook only`);
     for (const m of e.media) assert.ok(existsSync(`media/${m}`) && m.endsWith('.jpg'), `${e.id}: media/${m} missing or not JPG`);
   }

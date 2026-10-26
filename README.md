@@ -14,7 +14,7 @@ The quarter is written once, reviewed as a pull request, and then goes out on it
 
 ## The Q4 2026 calendar, from `data/schedule.json`
 
-| | Entries | Channels |
+| Mode | Entries | Channels |
 |---|---|---|
 | Automated by this repo | 163 | Facebook 75, Instagram feed 74, Instagram Stories 14 |
 | Kept in the schedule, posted elsewhere | 61 | LinkedIn 44, Google Business Profile 12, YouTube 5 |
