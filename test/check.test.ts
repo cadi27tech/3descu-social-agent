@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { test } from 'node:test';
+
+const BLOCKED = new Set(['e2af5ae350356721', 'e7542f24f23ec30c', 'a7805dd0db8159ef']);
 import { parse } from 'csv-parse/sync';
 import {
   berlinToUtc,
@@ -221,7 +224,10 @@ test('press coverage posts: slots, Profit.ro link on Facebook only, JPG media, n
   ]);
   for (const e of press) {
     const all = [e.caption, ...e.alt].join(' ');
-    assert.ok(!/[\u2012-\u2015]|4[.,]66|\bEUR\b|marketplace|marketplace|marketplace/i.test(all), `${e.id}: dash, 4.66, EUR or a marketplace name`);
+    assert.ok(!/[\u2012-\u2015]|4[.,]66|\bEUR\b/i.test(all), `${e.id}: dash, 4.66 or EUR`);
+    // Marketplace names are never published, so the blocklist holds hashes, not the names.
+    const words = all.toLowerCase().split(/[^a-z0-9]+/);
+    assert.ok(!words.some((w) => BLOCKED.has(createHash('sha256').update(w).digest('hex').slice(0, 16))), `${e.id}: a marketplace name`);
     if (e.channel === 'instagram') assert.ok(!/https?:\/\//.test(e.caption) && /link (in|\u00een) bio/.test(e.caption), `${e.id}: Instagram needs "link in bio" and no URL`);
     else assert.ok(/https:\/\/www\.profit\.ro\/\S+-22863423/.test(e.caption), `${e.id}: Facebook needs the Profit.ro link`);
     assert.ok(e.alt.length === 1 && e.alt[0].length > 50, `${e.id}: alt text`);
