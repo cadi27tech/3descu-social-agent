@@ -3814,5 +3814,37 @@
       "Card reading \"As featured in Romania Journal\" with the headline and the figures 200+ printers, 1,200+ orders, 10+ countries, 4.7 / 5 rating, over a photo of an aisle of 3D printers in the 3Descu factory."
     ],
     "draft": false
+  },
+  {
+    "id": "q4w46-wed-facebook-1830",
+    "channel": "facebook",
+    "mode": "auto",
+    "publish_at": "2026-11-11T17:30:00.000Z",
+    "local": "2026-11-11 18:30 Europe/Berlin",
+    "caption": "More than 467,000 parts printed since 2022.\n\nOur homepage now shows a live counter of every finished part shipped to customers. It counts parts, not orders, and it updates on its own as orders ship.\n\nTap the panel under it to see the mix: 56% ABS, 20% PETG, 10% PLA. White and black make up more than three parts in four, and 77% of all parts are smaller than 5 cm.\n\nFrom five 3D printers in a small apartment to 200+ industrial 3D printers on one factory floor in Targu Jiu, Romania. ISO 9001:2015 certified, 27 FDM polymers and 5 SLA resins, parts up to 500 x 500 x 500 mm, shipped across the EU, the UK, Switzerland and Norway.\n\nSee the live counter: 3descu.com\nUpload your file for an instant price and delivery date: quote.3descu.com\n\n#3DPrinting #AdditiveManufacturing #Manufacturing #3Descu",
+    "media_type": "image",
+    "media": [
+      "gfx/467k-parts-printer-aisle.jpg"
+    ],
+    "alt": [
+      "Aisle of enclosed industrial FDM 3D printers on two levels in the 3Descu factory in Targu Jiu, Romania."
+    ],
+    "draft": false
+  },
+  {
+    "id": "q4w46-wed-instagram-1845",
+    "channel": "instagram",
+    "mode": "auto",
+    "publish_at": "2026-11-11T17:45:00.000Z",
+    "local": "2026-11-11 18:45 Europe/Berlin",
+    "caption": "More than 467,000 parts printed since 2022.\n\nEvery finished part shipped to a customer shows up on the live counter on our homepage. Parts, not orders. Updated as orders ship.\n\nThe mix so far: 56% ABS. 43% white, 34% black. 77% smaller than 5 cm.\n\nIt started with five 3D printers in a small apartment. Today: 200+ industrial 3D printers in Targu Jiu, Romania, one of the largest 3D printing factories in Eastern Europe.\n\nLive counter and instant quote: link in bio.\n\n#3DPrinting #AdditiveManufacturing #FDM #SLA #Manufacturing #ISO9001 #FactoryFloor #3Descu",
+    "media_type": "image",
+    "media": [
+      "gfx/467k-parts-printer-aisle.jpg"
+    ],
+    "alt": [
+      "Aisle of enclosed industrial FDM 3D printers on two levels in the 3Descu factory in Targu Jiu, Romania."
+    ],
+    "draft": false
   }
 ]
