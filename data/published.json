@@ -766,5 +766,11 @@
     "ids": [
       "18125779324904392"
     ]
+  },
+  "q4w48-wed-facebook": {
+    "status": "failed",
+    "at": "2026-11-25T11:00:11.605Z",
+    "attempts": 1,
+    "error": "POST https://graph.facebook.com/v24.0/{id}/video_reels: 401 {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\""
   }
 }
