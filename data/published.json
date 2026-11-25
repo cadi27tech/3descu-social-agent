@@ -769,13 +769,19 @@
   },
   "q4w48-wed-facebook": {
     "status": "failed",
-    "at": "2026-11-25T11:30:13.053Z",
-    "attempts": 2,
+    "at": "2026-11-25T12:00:18.768Z",
+    "attempts": 3,
     "error": "POST https://graph.facebook.com/v24.0/{id}/video_reels: 401 {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"type\":\"OAuthException\",\"code\":190,\"error_subcode\":460,\""
   },
   "q4w48-wed-instagram": {
     "status": "failed",
-    "at": "2026-11-25T11:30:13.236Z",
+    "at": "2026-11-25T12:00:18.936Z",
+    "attempts": 2,
+    "error": "POST https://graph.facebook.com/v24.0/{id}/media: 401 {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrac"
+  },
+  "q4w48-wed-story": {
+    "status": "failed",
+    "at": "2026-11-25T12:00:19.258Z",
     "attempts": 1,
     "error": "POST https://graph.facebook.com/v24.0/{id}/media: 401 {\"error\":{\"message\":\"Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\",\"code\":190,\"type\":\"OAuthException\",\"error_subcode\":460,\"fbtrac"
   }
