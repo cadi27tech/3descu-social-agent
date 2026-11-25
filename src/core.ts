@@ -33,6 +33,14 @@ export const AUTO_CHANNELS: readonly Channel[] = ['facebook', 'instagram', 'stor
 // 6 h window dropped posts. 24 h still stops a backlog dump after a long outage.
 export const MAX_LATE_MS = 24 * 3600_000; // older than this = missed, never posted late
 export const MAX_ATTEMPTS = 3;
+
+/**
+ * The Meta token itself was rejected (Graph error 190 or HTTP 401). Every post would fail the
+ * same way, so the run stops and no post loses an attempt: a fixed token posts them all.
+ */
+export class AuthError extends Error {
+  override name = 'AuthError';
+}
 export const MEDIA_URL_PREFIX =
   'https://zzamnvhadwibvafqcfpd.supabase.co/storage/v1/object/public/social-media/';
 
@@ -179,9 +187,13 @@ export async function runDue(
   now: Date,
   publish: (e: Entry) => Promise<string[]>,
   save: (s: State) => void,
-): Promise<{ published: string[]; failed: string[]; missed: string[] }> {
+): Promise<{ published: string[]; failed: string[]; missed: string[]; authError?: string }> {
   const { due, missed } = selectDue(entries, state, now);
-  const res = { published: [] as string[], failed: [] as string[], missed: missed.map((e) => e.id) };
+  const res: { published: string[]; failed: string[]; missed: string[]; authError?: string } = {
+    published: [],
+    failed: [],
+    missed: missed.map((e) => e.id),
+  };
   for (const e of missed) state[e.id] = { status: 'missed', at: now.toISOString() };
   if (missed.length) save(state);
   for (const e of due) {
@@ -190,6 +202,10 @@ export async function runDue(
       state[e.id] = { status: 'published', at: new Date().toISOString(), ids };
       res.published.push(e.id);
     } catch (err) {
+      if (err instanceof AuthError) {
+        res.authError = err.message.slice(0, 300);
+        break;
+      }
       const attempts = (state[e.id]?.attempts ?? 0) + 1;
       const error = (err instanceof Error ? err.message : String(err)).slice(0, 300);
       state[e.id] = { status: 'failed', at: new Date().toISOString(), attempts, error };
