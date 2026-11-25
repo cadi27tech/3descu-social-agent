@@ -2,7 +2,7 @@
 // record it in data/published.json. Missing secrets or --dry-run = log only, exit 0.
 
 import { readFileSync, writeFileSync } from 'node:fs';
-import { MAX_LATE_MS, runDue, selectDue, type Entry, type State } from './core.ts';
+import { AuthError, MAX_LATE_MS, runDue, selectDue, type Entry, type State } from './core.ts';
 import { getPageToken, igUsername, publishEntry } from './meta.ts';
 
 const SCHEDULE = 'data/schedule.json';
@@ -50,17 +50,26 @@ if (dry) {
   process.exit(0);
 }
 
+const TOKEN_HELP =
+  'META_SYSTEM_USER_TOKEN was rejected by Meta. Generate a new system user token in Business Settings and run:\n' +
+  '  gh secret set META_SYSTEM_USER_TOKEN -R cadi27tech/3descu-social-agent\n' +
+  'No post lost an attempt: everything due is posted by the first run after the fix (up to 24 h late).';
+
 const pageId = process.env.META_PAGE_ID as string;
-const cfg = {
-  pageId,
-  igUserId: process.env.META_IG_USER_ID as string,
-  pageToken: await getPageToken(pageId, process.env.META_SYSTEM_USER_TOKEN as string),
-  mediaBase: MEDIA_BASE,
-};
+let pageToken: string;
+try {
+  pageToken = await getPageToken(pageId, process.env.META_SYSTEM_USER_TOKEN as string);
+} catch (err) {
+  if (!(err instanceof AuthError)) throw err;
+  console.error(`TOKEN REJECTED  ${err.message}\n${TOKEN_HELP}`);
+  process.exit(1);
+}
+const cfg = { pageId, igUserId: process.env.META_IG_USER_ID as string, pageToken, mediaBase: MEDIA_BASE };
 
 const res = await runDue(entries, state, now, (e) => publishEntry(e, cfg), save);
+if (res.authError) console.error(`TOKEN REJECTED  ${res.authError}\n${TOKEN_HELP}`);
 for (const id of res.published) console.log(`published  ${id}  ${state[id].ids?.join(',')}`);
 for (const id of res.failed) console.error(`FAILED     ${id}  attempt ${state[id].attempts}: ${state[id].error}`);
 for (const id of res.missed) console.error(`MISSED     ${id}  (more than ${MAX_LATE_MS / 3600_000} h overdue, not posted)`);
 console.log(`\n${res.published.length} published, ${res.failed.length} failed, ${res.missed.length} missed`);
-process.exit(res.failed.length || res.missed.length ? 1 : 0);
+process.exit(res.failed.length || res.missed.length || res.authError ? 1 : 0);

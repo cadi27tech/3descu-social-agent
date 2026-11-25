@@ -6,6 +6,7 @@ import { test } from 'node:test';
 const BLOCKED = new Set(['e2af5ae350356721', 'e7542f24f23ec30c', 'a7805dd0db8159ef']);
 import { parse } from 'csv-parse/sync';
 import {
+  AuthError,
   berlinToUtc,
   buildSchedule,
   isoWeek,
@@ -156,6 +157,32 @@ test('idempotency: a second run publishes nothing, failures retry up to the cap'
   // Round-trip through JSON, as the committed data/published.json does.
   const reloaded = JSON.parse(JSON.stringify(state)) as State;
   assert.deepEqual(selectDue([a, b], reloaded, now).due, []);
+});
+
+test('rejected token: run stops, no post loses an attempt, the fixed token posts them all', async () => {
+  const a = mk('a', '2026-11-02', '12:00');
+  const b = mk('b', '2026-11-02', '12:30');
+  const now = new Date('2026-11-02T12:40:00Z');
+  const state: State = { b: { status: 'failed', at: '2026-11-02T12:31:00Z', attempts: 2, error: 'boom' } };
+  const tried: string[] = [];
+  let tokenOk = false;
+  const publish = async (e: Entry) => {
+    tried.push(e.id);
+    if (!tokenOk) throw new AuthError('POST /{id}/media: 401 {"error":{"code":190,"error_subcode":460}}');
+    return [`post-${e.id}`];
+  };
+  for (let run = 0; run < 5; run++) {
+    const r = await runDue([a, b], state, now, publish, () => {});
+    assert.match(r.authError ?? '', /190/);
+    assert.deepEqual(r.failed, []);
+  }
+  assert.deepEqual(tried, ['a', 'a', 'a', 'a', 'a'], 'first auth failure stops the run');
+  assert.equal(state.a, undefined, 'a untouched');
+  assert.equal(state.b.attempts, 2, 'b keeps its attempts');
+  tokenOk = true;
+  const r = await runDue([a, b], state, now, publish, () => {});
+  assert.deepEqual(r.published, ['a', 'b']);
+  assert.equal(r.authError, undefined);
 });
 
 // Adrian 2026-10-02: the 50/50 split (orders over €500) is bank transfer only; card and PayPal are paid in full upfront.

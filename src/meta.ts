@@ -1,7 +1,7 @@
 // Meta Graph API publishing for one schedule entry: Facebook Page + Instagram Business.
 // Token goes in the Authorization header only, so it never appears in a URL or a log line.
 
-import type { Entry } from './core.ts';
+import { AuthError, type Entry } from './core.ts';
 
 const VERSION = 'v24.0';
 const GRAPH = `https://graph.facebook.com/${VERSION}`;
@@ -48,8 +48,12 @@ async function graph<T>(
         // non-JSON error body
       }
       detail = `${r.status} ${text.slice(0, 300)}`;
+      if (r.status === 401 || code === 190) {
+        throw new AuthError(`${method} ${url.replace(/\/\d{6,}/g, '/{id}')}: ${detail}`);
+      }
       retry = r.status >= 500 || r.status === 429 || TRANSIENT_CODES.has(code);
     } catch (e) {
+      if (e instanceof AuthError) throw e;
       detail = e instanceof Error ? e.message : String(e);
       retry = opts.safe === true;
     }
@@ -60,12 +64,15 @@ async function graph<T>(
 
 /**
  * Page access token for the Page. The secret may hold a system-user token (exchanged here) or a
- * never-expiring Page token from /me/accounts (used as is); a wrong token still fails on the first publish.
+ * never-expiring Page token from /me/accounts (used as is). A rejected token (error 190) throws AuthError.
  */
 export async function getPageToken(pageId: string, token: string): Promise<string> {
   const r = await graph<{ access_token?: string }>('GET', `${GRAPH}/${pageId}`, token, {
     fields: 'access_token',
-  }, { safe: true }).catch(() => ({} as { access_token?: string }));
+  }, { safe: true }).catch((e: unknown) => {
+    if (e instanceof AuthError) throw e;
+    return {} as { access_token?: string };
+  });
   return r.access_token ?? token;
 }
 
